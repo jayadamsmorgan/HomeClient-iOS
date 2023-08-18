@@ -7,18 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1415D72A89DC2D0041728C /* HomeSensorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1415D62A89DC2D0041728C /* HomeSensorsView.swift */; };
+		CE1415D92A89DC4B0041728C /* HomeSensorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1415D82A89DC4B0041728C /* HomeSensorsViewModel.swift */; };
+		CE1415DB2A8A63770041728C /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1415DA2A8A63770041728C /* Sensor.swift */; };
+		CE44AB982A8D84F4004860B1 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44AB972A8D84F4004860B1 /* CoreDataService.swift */; };
+		CE44AB9A2A8D89FB004860B1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44AB992A8D89FB004860B1 /* Error.swift */; };
+		CE44AB9C2A8D9504004860B1 /* DeviceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44AB9B2A8D9504004860B1 /* DeviceFactory.swift */; };
+		CE5D84892A8BFCEC009B70D0 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = CE5D84882A8BFCEC009B70D0 /* SwiftUIIntrospect */; };
+		CE92B3682A8B262700EAB0EE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92B3672A8B262700EAB0EE /* Location.swift */; };
+		CE92B36A2A8B28C100EAB0EE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92B3692A8B28C100EAB0EE /* Device.swift */; };
 		CEBD95F42A86DD4A00FA046A /* HomeClient_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD95F32A86DD4A00FA046A /* HomeClient_iOSApp.swift */; };
 		CEBD95F62A86DD4A00FA046A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD95F52A86DD4A00FA046A /* ContentView.swift */; };
 		CEBD95F82A86DD4B00FA046A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEBD95F72A86DD4B00FA046A /* Assets.xcassets */; };
 		CEBD95FB2A86DD4B00FA046A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEBD95FA2A86DD4B00FA046A /* Preview Assets.xcassets */; };
+		CEBD96022A86E27500FA046A /* HomeLightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96012A86E27500FA046A /* HomeLightView.swift */; };
+		CEBD96082A86E3AC00FA046A /* LightDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96072A86E3AC00FA046A /* LightDevice.swift */; };
+		CEBD960A2A86E40200FA046A /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96092A86E40200FA046A /* DeviceManager.swift */; };
+		CEBD960C2A86E42200FA046A /* UDPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD960B2A86E42200FA046A /* UDPServer.swift */; };
+		CEBD96102A86E56700FA046A /* HomeLightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD960F2A86E56700FA046A /* HomeLightViewModel.swift */; };
+		CEBD96122A86E61600FA046A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96112A86E61600FA046A /* SettingsViewModel.swift */; };
+		CEBD96142A86EA9A00FA046A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96132A86EA9A00FA046A /* SettingsView.swift */; };
+		CEBD96162A872EAB00FA046A /* LightDeviceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96152A872EAB00FA046A /* LightDeviceCardView.swift */; };
+		CEBD961B2A88008100FA046A /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD961A2A88008100FA046A /* Background.swift */; };
+		CEC9A46F2A8D1C0F00C4B85D /* LocationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */; };
+		CEC9A4732A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A4712A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE1415D62A89DC2D0041728C /* HomeSensorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSensorsView.swift; sourceTree = "<group>"; };
+		CE1415D82A89DC4B0041728C /* HomeSensorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSensorsViewModel.swift; sourceTree = "<group>"; };
+		CE1415DA2A8A63770041728C /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
+		CE44AB972A8D84F4004860B1 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		CE44AB992A8D89FB004860B1 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		CE44AB9B2A8D9504004860B1 /* DeviceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFactory.swift; sourceTree = "<group>"; };
+		CE92B3672A8B262700EAB0EE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		CE92B3692A8B28C100EAB0EE /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		CEBD95F02A86DD4A00FA046A /* HomeClient-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HomeClient-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBD95F32A86DD4A00FA046A /* HomeClient_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClient_iOSApp.swift; sourceTree = "<group>"; };
 		CEBD95F52A86DD4A00FA046A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CEBD95F72A86DD4B00FA046A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEBD95FA2A86DD4B00FA046A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CEBD96012A86E27500FA046A /* HomeLightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLightView.swift; sourceTree = "<group>"; };
+		CEBD96072A86E3AC00FA046A /* LightDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightDevice.swift; sourceTree = "<group>"; };
+		CEBD96092A86E40200FA046A /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		CEBD960B2A86E42200FA046A /* UDPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDPServer.swift; sourceTree = "<group>"; };
+		CEBD960F2A86E56700FA046A /* HomeLightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLightViewModel.swift; sourceTree = "<group>"; };
+		CEBD96112A86E61600FA046A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		CEBD96132A86EA9A00FA046A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CEBD96152A872EAB00FA046A /* LightDeviceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightDeviceCardView.swift; sourceTree = "<group>"; };
+		CEBD961A2A88008100FA046A /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFactory.swift; sourceTree = "<group>"; };
+		CEC9A4722A8D814600C4B85D /* DeviceCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeviceCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,12 +65,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5D84892A8BFCEC009B70D0 /* SwiftUIIntrospect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE92B36B2A8B2DC600EAB0EE /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				CE92B3692A8B28C100EAB0EE /* Device.swift */,
+				CEBD96072A86E3AC00FA046A /* LightDevice.swift */,
+				CE1415DA2A8A63770041728C /* Sensor.swift */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
 		CEBD95E72A86DD4A00FA046A = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +101,12 @@
 		CEBD95F22A86DD4A00FA046A /* HomeClient-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				CEBD96172A87CF3800FA046A /* Modifiers */,
+				CEBD96062A86E37600FA046A /* Services */,
+				CEBD96052A86E36300FA046A /* ViewModels */,
+				CEBD96042A86E34D00FA046A /* Models */,
+				CEBD96032A86E34400FA046A /* Views */,
 				CEBD95F32A86DD4A00FA046A /* HomeClient_iOSApp.swift */,
-				CEBD95F52A86DD4A00FA046A /* ContentView.swift */,
 				CEBD95F72A86DD4B00FA046A /* Assets.xcassets */,
 				CEBD95F92A86DD4B00FA046A /* Preview Content */,
 			);
@@ -65,6 +119,67 @@
 				CEBD95FA2A86DD4B00FA046A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CEBD96032A86E34400FA046A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CEBD95F52A86DD4A00FA046A /* ContentView.swift */,
+				CEBD96012A86E27500FA046A /* HomeLightView.swift */,
+				CEBD96132A86EA9A00FA046A /* SettingsView.swift */,
+				CEBD96152A872EAB00FA046A /* LightDeviceCardView.swift */,
+				CEBD961A2A88008100FA046A /* Background.swift */,
+				CE1415D62A89DC2D0041728C /* HomeSensorsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CEBD96042A86E34D00FA046A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEC9A4702A8D812400C4B85D /* CoreData */,
+				CE92B36B2A8B2DC600EAB0EE /* Devices */,
+				CE92B3672A8B262700EAB0EE /* Location.swift */,
+				CE44AB992A8D89FB004860B1 /* Error.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CEBD96052A86E36300FA046A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CEBD960F2A86E56700FA046A /* HomeLightViewModel.swift */,
+				CEBD96112A86E61600FA046A /* SettingsViewModel.swift */,
+				CE1415D82A89DC4B0041728C /* HomeSensorsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CEBD96062A86E37600FA046A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CEBD96092A86E40200FA046A /* DeviceManager.swift */,
+				CEBD960B2A86E42200FA046A /* UDPServer.swift */,
+				CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */,
+				CE44AB972A8D84F4004860B1 /* CoreDataService.swift */,
+				CE44AB9B2A8D9504004860B1 /* DeviceFactory.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CEBD96172A87CF3800FA046A /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		CEC9A4702A8D812400C4B85D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CEC9A4712A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +198,9 @@
 			dependencies = (
 			);
 			name = "HomeClient-iOS";
+			packageProductDependencies = (
+				CE5D84882A8BFCEC009B70D0 /* SwiftUIIntrospect */,
+			);
 			productName = "HomeClient-iOS";
 			productReference = CEBD95F02A86DD4A00FA046A /* HomeClient-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +229,9 @@
 				Base,
 			);
 			mainGroup = CEBD95E72A86DD4A00FA046A;
+			packageReferences = (
+				CE5D84872A8BFCEC009B70D0 /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
+			);
 			productRefGroup = CEBD95F12A86DD4A00FA046A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +258,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBD96022A86E27500FA046A /* HomeLightView.swift in Sources */,
+				CE1415DB2A8A63770041728C /* Sensor.swift in Sources */,
+				CE44AB9C2A8D9504004860B1 /* DeviceFactory.swift in Sources */,
+				CE1415D92A89DC4B0041728C /* HomeSensorsViewModel.swift in Sources */,
+				CEC9A4732A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld in Sources */,
+				CE92B36A2A8B28C100EAB0EE /* Device.swift in Sources */,
 				CEBD95F62A86DD4A00FA046A /* ContentView.swift in Sources */,
+				CEBD96102A86E56700FA046A /* HomeLightViewModel.swift in Sources */,
+				CE44AB982A8D84F4004860B1 /* CoreDataService.swift in Sources */,
+				CE92B3682A8B262700EAB0EE /* Location.swift in Sources */,
+				CEBD960C2A86E42200FA046A /* UDPServer.swift in Sources */,
+				CE1415D72A89DC2D0041728C /* HomeSensorsView.swift in Sources */,
 				CEBD95F42A86DD4A00FA046A /* HomeClient_iOSApp.swift in Sources */,
+				CEBD96142A86EA9A00FA046A /* SettingsView.swift in Sources */,
+				CEBD960A2A86E40200FA046A /* DeviceManager.swift in Sources */,
+				CEBD96162A872EAB00FA046A /* LightDeviceCardView.swift in Sources */,
+				CEBD96082A86E3AC00FA046A /* LightDevice.swift in Sources */,
+				CEC9A46F2A8D1C0F00C4B85D /* LocationFactory.swift in Sources */,
+				CEBD961B2A88008100FA046A /* Background.swift in Sources */,
+				CE44AB9A2A8D89FB004860B1 /* Error.swift in Sources */,
+				CEBD96122A86E61600FA046A /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +479,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE5D84872A8BFCEC009B70D0 /* XCRemoteSwiftPackageReference "swiftui-introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/swiftui-introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE5D84882A8BFCEC009B70D0 /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE5D84872A8BFCEC009B70D0 /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
+			productName = SwiftUIIntrospect;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		CEC9A4712A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CEC9A4722A8D814600C4B85D /* DeviceCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = CEC9A4722A8D814600C4B85D /* DeviceCoreDataModel.xcdatamodel */;
+			path = HomeClientCoreDataContainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CEBD95E82A86DD4A00FA046A /* Project object */;
 }
