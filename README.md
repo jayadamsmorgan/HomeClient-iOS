@@ -1,6 +1,6 @@
 # HomeClient-iOS
 
-### iOS Smart Home App for [HomeServer](https://github.com/jayadamsmorgan/JavaHomeServer) project written in SwiftUI
+### iOS Smart Home App for [JavaHomeServer](https://github.com/jayadamsmorgan/JavaHomeServer) project written in SwiftUI
 
 <img width="380" alt="Home Screen Light Appearance" src="https://github.com/jayadamsmorgan/HomeClient-iOS/assets/17194588/9eee16a9-c4fc-49dd-a5b4-969ddc41feb8">
 
