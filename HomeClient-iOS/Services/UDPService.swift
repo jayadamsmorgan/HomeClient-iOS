@@ -1,7 +1,7 @@
 import Foundation
 import Network
 
-class UDPServer {
+class UDPService {
 
     private let connection: NWConnection
     private var connectionState: NWConnection.State?

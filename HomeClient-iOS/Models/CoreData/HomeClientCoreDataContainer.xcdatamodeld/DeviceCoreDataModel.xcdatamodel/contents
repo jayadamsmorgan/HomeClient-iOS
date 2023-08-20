@@ -2,15 +2,14 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="DeviceEntity" representedClassName="DeviceEntity" syncable="YES" codeGenerationType="class">
         <attribute name="data" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="ipAddress" optional="YES" attributeType="String"/>
         <attribute name="locationName" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
-        <relationship name="deviceLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocationEntity" inverseName="locationDevices" inverseEntity="LocationEntity"/>
+        <relationship name="deviceLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocationEntity"/>
     </entity>
     <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES" codeGenerationType="class">
         <attribute name="locationName" optional="YES" attributeType="String"/>
-        <relationship name="locationDevices" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DeviceEntity" inverseName="deviceLocation" inverseEntity="DeviceEntity"/>
     </entity>
 </model>

@@ -3,13 +3,22 @@ import CoreData
 
 class CoreDataService {
     
-    fileprivate let container: NSPersistentContainer
+    fileprivate let container = NSPersistentContainer(name: "HomeClientCoreDataContainer")
     
     fileprivate var savedDeviceEntities: [DeviceEntity] = []
     fileprivate var savedLocationEntities: [LocationEntity] = []
     
+    fileprivate static var instance: CoreDataService?
+    
+    public static func getInstance() -> CoreDataService {
+        if instance == nil {
+            instance = CoreDataService()
+        }
+        return instance!
+    }
+    
+    
     init() {
-        container = NSPersistentContainer(name: "HomeClientCoreDataContainer")
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("Error loading CoreData: \(error)")
@@ -56,8 +65,20 @@ class CoreDataService {
         }
     }
     
-    func saveEntity<T>(_ entity: T) -> Error? where T: NSManagedObject {
-        
+    func save() -> Error? {
+        do {
+            try container.viewContext.save()
+            if let error = fetchEntities() {
+                return error
+            }
+        } catch let error {
+            return Error(error.localizedDescription, .DEFAULT_ERROR)
+        }
+        return nil
+    }
+    
+    func getContext() -> NSManagedObjectContext {
+        return container.viewContext
     }
     
     func getDeviceEntities() -> [DeviceEntity] {

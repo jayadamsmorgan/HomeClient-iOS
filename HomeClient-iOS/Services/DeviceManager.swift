@@ -2,9 +2,6 @@ import Foundation
 
 class DeviceManager {
     
-    var devices: [any Device] = []
-    var deviceEntities: [DeviceEntity] = []
-    
     public static let receiveThreadLabel = "receiveThreadLabel"
     
     fileprivate static var instance: DeviceManager?
@@ -17,13 +14,13 @@ class DeviceManager {
     }
     
     fileprivate init() {
-        self.networkDeviceManager = NetworkDeviceManager(UDPServer())
-        self.localDeviceManager = LocalDeviceManager(CoreDataService())
+        self.networkDeviceManager = NetworkDeviceManager(UDPService())
+        self.locationFactory = LocationFactory.getInstance()
         self.receiveThreadInit()
     }
     
     fileprivate let networkDeviceManager: NetworkDeviceManager
-    fileprivate let localDeviceManager: LocalDeviceManager
+    fileprivate let locationFactory: LocationFactory
     
     fileprivate func receiveThreadInit() {
         
@@ -35,19 +32,10 @@ class DeviceManager {
                     if let error = error {
                         print("Cannot get Devices from Server: \(error.message)")
                     } else {
-                        self.devices = DeviceFactory.convertToDevices(deviceDTOs: result)
-                        self.deviceEntities = DeviceFactory.convertToDeviceEntities(devices: self.devices)
+                        let deviceFactory = DeviceFactory.getInstance()
+                        deviceFactory.dtosToDevices(deviceDTOs: result)
                     }
                 }
-            }
-        }
-    }
-    
-    public func saveDevice(device: any Device) {
-        let deviceDTO = DeviceFactory.convertToDeviceDTO(device: device)
-        networkDeviceManager.updateServerDevice(device: deviceDTO) { error in
-            if let error = error {
-                print("Cannot update Device over UDP: \(error.message)")
             }
         }
     }
@@ -56,14 +44,14 @@ class DeviceManager {
 
 private class NetworkDeviceManager {
 
-    private let udpServer: UDPServer
+    private let udpService: UDPService
 
-    init(_ udpServer: UDPServer) {
-        self.udpServer = udpServer
+    init(_ udpService: UDPService) {
+        self.udpService = udpService
     }
 
     public func getServerDevices(_ handleFinish: @escaping (_ error: Error?, _ result: [DeviceDTO]) -> Void) {
-        udpServer.receiveUdp { error, result in
+        udpService.receiveUdp { error, result in
             if error != nil {
                 handleFinish(error, [])
             } else {
@@ -81,7 +69,7 @@ private class NetworkDeviceManager {
     public func updateServerDevice(device: DeviceDTO, _ handleFinish: @escaping (_ error: Error?) -> Void) {
         do {
             let json = try JSONEncoder().encode(device)
-            udpServer.sendUdp(json) { error in
+            udpService.sendUdp(json) { error in
                 handleFinish(error)
             }
         } catch {
@@ -92,26 +80,3 @@ private class NetworkDeviceManager {
 
 }
 
-private class LocalDeviceManager {
-    
-    private let coreDataService: CoreDataService
-    
-    init(_ coreDataService: CoreDataService) {
-        self.coreDataService = coreDataService
-    }
-    
-    public func getLocalDevices() -> (Error?, [DeviceEntity]) {
-        if let error = coreDataService.fetchEntity(entityType: .deviceEntity) {
-            return (error, [])
-        }
-        
-    }
-    
-    public func saveDeviceLocally(_ device: DeviceEntity) -> Error? {
-        if let error = coreDataService.saveEntity(device) {
-            return error
-        }
-        
-    }
-    
-}

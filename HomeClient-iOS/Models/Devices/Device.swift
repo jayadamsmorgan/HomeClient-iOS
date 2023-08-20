@@ -19,6 +19,7 @@ struct DeviceDTO: Codable {
     let data: String?
     let ipAddress: String?
     let on: Bool?
+    let type: String?
     
 }
 

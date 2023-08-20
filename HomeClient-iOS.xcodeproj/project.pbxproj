@@ -12,7 +12,6 @@
 		CE1415DB2A8A63770041728C /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1415DA2A8A63770041728C /* Sensor.swift */; };
 		CE44AB982A8D84F4004860B1 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44AB972A8D84F4004860B1 /* CoreDataService.swift */; };
 		CE44AB9A2A8D89FB004860B1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44AB992A8D89FB004860B1 /* Error.swift */; };
-		CE44AB9C2A8D9504004860B1 /* DeviceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44AB9B2A8D9504004860B1 /* DeviceFactory.swift */; };
 		CE5D84892A8BFCEC009B70D0 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = CE5D84882A8BFCEC009B70D0 /* SwiftUIIntrospect */; };
 		CE92B3682A8B262700EAB0EE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92B3672A8B262700EAB0EE /* Location.swift */; };
 		CE92B36A2A8B28C100EAB0EE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92B3692A8B28C100EAB0EE /* Device.swift */; };
@@ -23,7 +22,7 @@
 		CEBD96022A86E27500FA046A /* HomeLightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96012A86E27500FA046A /* HomeLightView.swift */; };
 		CEBD96082A86E3AC00FA046A /* LightDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96072A86E3AC00FA046A /* LightDevice.swift */; };
 		CEBD960A2A86E40200FA046A /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96092A86E40200FA046A /* DeviceManager.swift */; };
-		CEBD960C2A86E42200FA046A /* UDPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD960B2A86E42200FA046A /* UDPServer.swift */; };
+		CEBD960C2A86E42200FA046A /* UDPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD960B2A86E42200FA046A /* UDPService.swift */; };
 		CEBD96102A86E56700FA046A /* HomeLightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD960F2A86E56700FA046A /* HomeLightViewModel.swift */; };
 		CEBD96122A86E61600FA046A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96112A86E61600FA046A /* SettingsViewModel.swift */; };
 		CEBD96142A86EA9A00FA046A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD96132A86EA9A00FA046A /* SettingsView.swift */; };
@@ -31,6 +30,7 @@
 		CEBD961B2A88008100FA046A /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD961A2A88008100FA046A /* Background.swift */; };
 		CEC9A46F2A8D1C0F00C4B85D /* LocationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */; };
 		CEC9A4732A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A4712A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld */; };
+		CEF915032A91860100570EF7 /* DeviceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF915022A91860100570EF7 /* DeviceFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +39,6 @@
 		CE1415DA2A8A63770041728C /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		CE44AB972A8D84F4004860B1 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		CE44AB992A8D89FB004860B1 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		CE44AB9B2A8D9504004860B1 /* DeviceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFactory.swift; sourceTree = "<group>"; };
 		CE92B3672A8B262700EAB0EE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		CE92B3692A8B28C100EAB0EE /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		CEBD95F02A86DD4A00FA046A /* HomeClient-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HomeClient-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,7 +49,7 @@
 		CEBD96012A86E27500FA046A /* HomeLightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLightView.swift; sourceTree = "<group>"; };
 		CEBD96072A86E3AC00FA046A /* LightDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightDevice.swift; sourceTree = "<group>"; };
 		CEBD96092A86E40200FA046A /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
-		CEBD960B2A86E42200FA046A /* UDPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDPServer.swift; sourceTree = "<group>"; };
+		CEBD960B2A86E42200FA046A /* UDPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDPService.swift; sourceTree = "<group>"; };
 		CEBD960F2A86E56700FA046A /* HomeLightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLightViewModel.swift; sourceTree = "<group>"; };
 		CEBD96112A86E61600FA046A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		CEBD96132A86EA9A00FA046A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -58,6 +57,7 @@
 		CEBD961A2A88008100FA046A /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFactory.swift; sourceTree = "<group>"; };
 		CEC9A4722A8D814600C4B85D /* DeviceCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeviceCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		CEF915022A91860100570EF7 /* DeviceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,10 +159,10 @@
 			isa = PBXGroup;
 			children = (
 				CEBD96092A86E40200FA046A /* DeviceManager.swift */,
-				CEBD960B2A86E42200FA046A /* UDPServer.swift */,
+				CEBD960B2A86E42200FA046A /* UDPService.swift */,
+				CEF915022A91860100570EF7 /* DeviceFactory.swift */,
 				CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */,
 				CE44AB972A8D84F4004860B1 /* CoreDataService.swift */,
-				CE44AB9B2A8D9504004860B1 /* DeviceFactory.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -260,7 +260,6 @@
 			files = (
 				CEBD96022A86E27500FA046A /* HomeLightView.swift in Sources */,
 				CE1415DB2A8A63770041728C /* Sensor.swift in Sources */,
-				CE44AB9C2A8D9504004860B1 /* DeviceFactory.swift in Sources */,
 				CE1415D92A89DC4B0041728C /* HomeSensorsViewModel.swift in Sources */,
 				CEC9A4732A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld in Sources */,
 				CE92B36A2A8B28C100EAB0EE /* Device.swift in Sources */,
@@ -268,8 +267,9 @@
 				CEBD96102A86E56700FA046A /* HomeLightViewModel.swift in Sources */,
 				CE44AB982A8D84F4004860B1 /* CoreDataService.swift in Sources */,
 				CE92B3682A8B262700EAB0EE /* Location.swift in Sources */,
-				CEBD960C2A86E42200FA046A /* UDPServer.swift in Sources */,
+				CEBD960C2A86E42200FA046A /* UDPService.swift in Sources */,
 				CE1415D72A89DC2D0041728C /* HomeSensorsView.swift in Sources */,
+				CEF915032A91860100570EF7 /* DeviceFactory.swift in Sources */,
 				CEBD95F42A86DD4A00FA046A /* HomeClient_iOSApp.swift in Sources */,
 				CEBD96142A86EA9A00FA046A /* SettingsView.swift in Sources */,
 				CEBD960A2A86E40200FA046A /* DeviceManager.swift in Sources */,

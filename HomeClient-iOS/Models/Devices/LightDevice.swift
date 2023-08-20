@@ -9,6 +9,7 @@ struct LightDevice: Device {
         self.on = on
         self.data = data
         self.location = location
+        _ = location.addDevice(self)
     }
     
     var id: Int
@@ -32,40 +33,4 @@ struct LightDevice: Device {
         location
     }
 
-}
-
-extension LightDevice {
-    
-    init(id: Int, name: String, locationString: String, data: String, ipAddress: String, on: Bool) {
-        self.id = id
-        self.name = name
-        self.ipAddress = ipAddress
-        self.on = on
-        self.data = data
-        let locationFactory = LocationFactory.getInstance()
-        let location = locationFactory.getLocationByName(locationString)
-        self.location = location
-        _ = location.addDevice(self)
-    }
-    
-    init(id: Int, name: String, locationString: String, ipAddress: String, on: Bool) {
-        self.id = id
-        self.name = name
-        self.ipAddress = ipAddress
-        self.on = on
-        let locationFactory = LocationFactory.getInstance()
-        let location = locationFactory.getLocationByName(locationString)
-        self.location = location
-        _ = location.addDevice(self)
-        
-    }
-    
-    init(id: Int, name: String, location: Location, ipAddress: String, on: Bool) {
-        self.id = id
-        self.name = name
-        self.ipAddress = ipAddress
-        self.on = on
-        self.location = location
-    }
-    
 }
