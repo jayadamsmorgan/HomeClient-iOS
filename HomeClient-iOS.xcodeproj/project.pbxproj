@@ -30,6 +30,7 @@
 		CEBD961B2A88008100FA046A /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD961A2A88008100FA046A /* Background.swift */; };
 		CEC9A46F2A8D1C0F00C4B85D /* LocationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */; };
 		CEC9A4732A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A4712A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld */; };
+		CEE726652A93A28600A73847 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE726642A93A28600A73847 /* TestView.swift */; };
 		CEF915032A91860100570EF7 /* DeviceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF915022A91860100570EF7 /* DeviceFactory.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		CEBD961A2A88008100FA046A /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFactory.swift; sourceTree = "<group>"; };
 		CEC9A4722A8D814600C4B85D /* DeviceCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeviceCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		CEE726642A93A28600A73847 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		CEF915022A91860100570EF7 /* DeviceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 				CEBD96152A872EAB00FA046A /* LightDeviceCardView.swift */,
 				CEBD961A2A88008100FA046A /* Background.swift */,
 				CE1415D62A89DC2D0041728C /* HomeSensorsView.swift */,
+				CEE726642A93A28600A73847 /* TestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			files = (
 				CEBD96022A86E27500FA046A /* HomeLightView.swift in Sources */,
 				CE1415DB2A8A63770041728C /* Sensor.swift in Sources */,
+				CEE726652A93A28600A73847 /* TestView.swift in Sources */,
 				CE1415D92A89DC4B0041728C /* HomeSensorsViewModel.swift in Sources */,
 				CEC9A4732A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld in Sources */,
 				CE92B36A2A8B28C100EAB0EE /* Device.swift in Sources */,

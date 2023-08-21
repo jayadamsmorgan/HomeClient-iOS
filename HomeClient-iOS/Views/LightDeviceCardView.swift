@@ -2,29 +2,36 @@ import SwiftUI
 
 struct LightDeviceCardView: View {
     
-    @State var device: LightDevice
+    private var locationIndex: Int
+    private var deviceIndex: Int
     
     @State private var backgroundColor: Color
+    @StateObject private var homeLightViewModel: HomeLightViewModel
     
-    init(_ device: LightDevice) {
-        self.device = device
-        self.backgroundColor = device.on ? Color.yellow : Color.clear
+    init(_ locationIndex: Int, _ deviceIndex: Int, _ homeLightViewModel: HomeLightViewModel) {
+        self.locationIndex = locationIndex
+        self.deviceIndex = deviceIndex
+        self.backgroundColor = homeLightViewModel
+            .locations[locationIndex]
+            .lightDevices[deviceIndex]
+            .on ? Color.yellow : Color.clear
+        _homeLightViewModel = StateObject(wrappedValue: homeLightViewModel)
+        
     }
     
     var body: some View {
         ZStack(alignment: .topLeading) {
             Rectangle()
-                .foregroundStyle(.ultraThinMaterial)
-                .frame(width: 170, height: 170)
-                .cornerRadius(25)
-            Rectangle()
                 .fill(backgroundColor)
                 .frame(width: 110, height: 110)
                 .cornerRadius(40)
-                .offset(x: 30, y: 20)
-                .opacity(0.7)
+                .offset(x: 30, y: 30)
                 .blur(radius: 30)
-            Text(device.name)
+            Rectangle()
+                .foregroundStyle(.ultraThinMaterial)
+                .frame(width: 170, height: 170)
+                .cornerRadius(25)
+            Text(homeLightViewModel.locations[locationIndex].lightDevices[deviceIndex].name)
                 .foregroundColor(.primary)
                 .font(.system(size: 22).bold())
                 .multilineTextAlignment(.leading)
@@ -36,14 +43,14 @@ struct LightDeviceCardView: View {
             lightCardContextMenuItems
         }
         .onTapGesture {
-            device.on.toggle()
+            homeLightViewModel.toggleLightDevice(locationIndex, deviceIndex)
             buttonVisualToggle()
         }
     }
     
     func buttonVisualToggle() {
         withAnimation {
-            self.backgroundColor = device.on ? Color.yellow : Color.clear
+            self.backgroundColor = homeLightViewModel.locations[locationIndex].lightDevices[deviceIndex].on ? Color.yellow : Color.clear
         }
     }
     
@@ -58,6 +65,10 @@ struct LightDeviceCardView: View {
 
 struct LightDeviceCardView_Previews: PreviewProvider {
     static var previews: some View {
-        LightDeviceCardView(LightDevice(id: 11, name: "Bedroom Light", locationString: "Bedroom", ipAddress: "192.168.1.31", on: true))
+        let location = Location(locationName: "Bedroom")
+        let device = LightDevice(id: 11, name: "Bedroom Light", location: location, data: "", ipAddress: "", on: true)
+        let error = location.addDevice(device)
+        let homeLightViewModel = HomeLightViewModel(locations: [location])
+        LightDeviceCardView(0, 0, homeLightViewModel)
     }
 }

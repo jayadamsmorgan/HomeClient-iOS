@@ -1,6 +1,7 @@
 import Foundation
+import SwiftUI
 
-class Location: Hashable, ObservableObject {
+class Location: Hashable, ObservableObject, Identifiable {
     
     init(locationName: String) {
         self.locationName = locationName
@@ -8,35 +9,26 @@ class Location: Hashable, ObservableObject {
     
     @Published public var locationName: String
     
-    @Published private var devices: [any Device] = []
-    
-    public func getLightDevices() -> [LightDevice] {
-        var lightDevices: [LightDevice] = []
-        for device in devices {
-            if type(of: device) == LightDevice.Type.self {
-                lightDevices.append(device as! LightDevice)
-            }
-        }
-        return lightDevices
-    }
-    
-    public func getSensors() -> [Sensor] {
-        var sensors: [Sensor] = []
-        for device in devices {
-            if type(of: device) == Sensor.Type.self {
-                sensors.append(device as! Sensor)
-            }
-        }
-        return sensors
-    }
+    @Published var lightDevices: [LightDevice] = []
+    @Published var sensors: [Sensor] = []
     
     public func addDevice(_ newDevice: any Device) -> Bool {
-        if newDevice.location == self {
-            devices.append(newDevice)
+        switch type(of: newDevice) {
+            
+        case is LightDevice.Type:
+            lightDevices.append(newDevice as! LightDevice)
             return true
-        } else {
-            return false
+            
+        case is Sensor.Type:
+            sensors.append(newDevice as! Sensor)
+            return true
+            
+        default:
+            print("DeviceType is not yet supported")
+            
         }
+        
+        return false
     }
     
     private var identifier: String {

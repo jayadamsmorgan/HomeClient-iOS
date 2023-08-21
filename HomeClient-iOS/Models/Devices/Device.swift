@@ -1,6 +1,6 @@
 import Foundation
 
-protocol Device: Hashable {
+protocol Device: Hashable, Identifiable {
     var id: Int { get set }
     var name: String { get set }
     var location: Location { get }
