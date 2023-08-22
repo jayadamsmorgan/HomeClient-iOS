@@ -14,6 +14,34 @@ struct ContentView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
+                .onAppear {
+                    let bedroomLocation = Location(locationName: "Bedroom")
+                    let bedroomLight = LightDevice(id: 1,
+                                                   name: "Bedroom Light",
+                                                   location: bedroomLocation,
+                                                   data: "",
+                                                   ipAddress: "192.168.1.12",
+                                                   on: false)
+                    let deskLight = LightDevice(id: 2,
+                                                name: "Desk Light",
+                                                location: bedroomLocation,
+                                                data: "",
+                                                ipAddress: "192.168.1.13",
+                                                on: true)
+                    _ = bedroomLocation.addDevice(bedroomLight)
+                    _ = bedroomLocation.addDevice(deskLight)
+                    
+                    let bathroomLocation = Location(locationName: "Bathroom")
+                    let bathroomLight = LightDevice(id: 3,
+                                                    name: "Bathroom Light",
+                                                    location: bathroomLocation,
+                                                    data: "",
+                                                    ipAddress: "192.168.1.14",
+                                                    on: false)
+                    _ = bathroomLocation.addDevice(bathroomLight)
+                    
+                    homeLightViewModel.locations = [bedroomLocation, bathroomLocation]
+                }
             HomeSensorsView(homeSensorsViewModel)
                 .tabItem {
                     Image(systemName: "sensor")

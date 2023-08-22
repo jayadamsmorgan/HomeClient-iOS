@@ -9,6 +9,11 @@ struct HomeLightView: View {
     
     init(_ homeViewModel: HomeLightViewModel) {
         _homeLightViewModel = StateObject(wrappedValue: homeViewModel)
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        if let window = windowScene?.windows.first {
+            window.backgroundColor = UIColor(Color("darkPink"))
+        }
     }
     
     var body: some View {
@@ -112,6 +117,9 @@ struct HomeLightView: View {
         .sheet(isPresented: $isLocationSheetPresented) {
             ZStack(alignment: .topTrailing) {
                 LocationView(sheetLocationIndex, homeLightViewModel)
+                    .onAppear {
+                        
+                    }
                 Button {
                     isLocationSheetPresented = false
                 } label: {
@@ -142,13 +150,28 @@ struct HomeView_Previews: PreviewProvider {
         HomeLightView(homeLightViewModel)
             .onAppear {
                 let bedroomLocation = Location(locationName: "Bedroom")
-                let bedroomLight = LightDevice(id: 1, name: "Bedroom Light", location: bedroomLocation, data: "", ipAddress: "192.168.1.12", on: false)
-                let deskLight = LightDevice(id: 2, name: "Desk Light", location: bedroomLocation, data: "", ipAddress: "192.168.1.13", on: true)
+                let bedroomLight = LightDevice(id: 1,
+                                               name: "Bedroom Light",
+                                               location: bedroomLocation,
+                                               data: "",
+                                               ipAddress: "192.168.1.12",
+                                               on: false)
+                let deskLight = LightDevice(id: 2,
+                                            name: "Desk Light",
+                                            location: bedroomLocation,
+                                            data: "",
+                                            ipAddress: "192.168.1.13",
+                                            on: true)
                 _ = bedroomLocation.addDevice(bedroomLight)
                 _ = bedroomLocation.addDevice(deskLight)
                 
                 let bathroomLocation = Location(locationName: "Bathroom")
-                let bathroomLight = LightDevice(id: 3, name: "Bathroom Light", location: bathroomLocation, data: "", ipAddress: "192.168.1.14", on: false)
+                let bathroomLight = LightDevice(id: 3,
+                                                name: "Bathroom Light",
+                                                location: bathroomLocation,
+                                                data: "",
+                                                ipAddress: "192.168.1.14",
+                                                on: false)
                 _ = bathroomLocation.addDevice(bathroomLight)
                 
                 homeLightViewModel.locations = [bedroomLocation, bathroomLocation]
