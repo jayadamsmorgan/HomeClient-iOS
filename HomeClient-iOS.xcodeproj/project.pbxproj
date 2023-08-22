@@ -31,6 +31,7 @@
 		CEC9A46F2A8D1C0F00C4B85D /* LocationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */; };
 		CEC9A4732A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A4712A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld */; };
 		CEE726652A93A28600A73847 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE726642A93A28600A73847 /* TestView.swift */; };
+		CEE726672A94E5F600A73847 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE726662A94E5F600A73847 /* LocationView.swift */; };
 		CEF915032A91860100570EF7 /* DeviceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF915022A91860100570EF7 /* DeviceFactory.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFactory.swift; sourceTree = "<group>"; };
 		CEC9A4722A8D814600C4B85D /* DeviceCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeviceCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CEE726642A93A28600A73847 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		CEE726662A94E5F600A73847 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		CEF915022A91860100570EF7 /* DeviceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +135,7 @@
 				CEBD961A2A88008100FA046A /* Background.swift */,
 				CE1415D62A89DC2D0041728C /* HomeSensorsView.swift */,
 				CEE726642A93A28600A73847 /* TestView.swift */,
+				CEE726662A94E5F600A73847 /* LocationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				CE1415D72A89DC2D0041728C /* HomeSensorsView.swift in Sources */,
 				CEF915032A91860100570EF7 /* DeviceFactory.swift in Sources */,
 				CEBD95F42A86DD4A00FA046A /* HomeClient_iOSApp.swift in Sources */,
+				CEE726672A94E5F600A73847 /* LocationView.swift in Sources */,
 				CEBD96142A86EA9A00FA046A /* SettingsView.swift in Sources */,
 				CEBD960A2A86E40200FA046A /* DeviceManager.swift in Sources */,
 				CEBD96162A872EAB00FA046A /* LightDeviceCardView.swift in Sources */,

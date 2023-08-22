@@ -4,6 +4,9 @@ struct HomeLightView: View {
     
     @StateObject private var homeLightViewModel: HomeLightViewModel
     
+    @State private var isLocationSheetPresented = false
+    @State private var sheetLocationIndex: Int = 0
+    
     init(_ homeViewModel: HomeLightViewModel) {
         _homeLightViewModel = StateObject(wrappedValue: homeViewModel)
     }
@@ -23,18 +26,18 @@ struct HomeLightView: View {
                             } else {
                                 VStack(alignment: .leading) {
                                     
-                                    HStack {
-                                        Button {
-                                            // TODO: Go to DeviceLocationView
-                                        } label: {
-                                            HStack {
-                                                Text(homeLightViewModel.locations[locationIndex].locationName)
-                                                    .font(.title)
-                                                    .foregroundColor(Color.primary)
-                                                Image(systemName: "chevron.right")
-                                            }
-                                            .padding()
+                                    Button {
+                                        sheetLocationIndex = locationIndex
+                                        isLocationSheetPresented = true
+                                    } label: {
+                                        HStack {
+                                            Text(homeLightViewModel.locations[locationIndex].locationName)
+                                                .font(.title)
+                                                .foregroundColor(Color.primary)
+                                            Image(systemName: "chevron.right")
                                         }
+                                        .padding()
+                                        .padding(.leading, 7)
                                     }
                                     
                                     HStack {
@@ -105,7 +108,29 @@ struct HomeLightView: View {
             .background {
                 Background()
             }
-            
+        }
+        .sheet(isPresented: $isLocationSheetPresented) {
+            ZStack(alignment: .topTrailing) {
+                LocationView(sheetLocationIndex, homeLightViewModel)
+                Button {
+                    isLocationSheetPresented = false
+                } label: {
+                    Image(systemName: "xmark")
+                        .padding(8)
+                        .background {
+                            Circle()
+                                .foregroundStyle(.thickMaterial)
+                        }
+                }
+                .padding(.trailing, 30)
+                .padding(.top, 30)
+            }
+        }
+        .introspect(.navigationStack, on: .iOS(.v16, .v17)) { navStack in
+            let navbarAppearance = UINavigationBarAppearance()
+            navbarAppearance.configureWithDefaultBackground()
+            navbarAppearance.backgroundEffect = UIBlurEffect(style: .systemThinMaterial)
+            navStack.navigationBar.standardAppearance = navbarAppearance
         }
     }
 }

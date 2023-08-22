@@ -2,20 +2,24 @@ import SwiftUI
 
 struct LightDeviceCardView: View {
     
-    private var locationIndex: Int
-    private var deviceIndex: Int
-    
-    @State private var backgroundColor: Color
     @StateObject private var homeLightViewModel: HomeLightViewModel
     
-    init(_ locationIndex: Int, _ deviceIndex: Int, _ homeLightViewModel: HomeLightViewModel) {
+    private let locationIndex: Int
+    private let deviceIndex: Int
+    
+    @State private var backgroundColor: Color
+    
+    init(_ locationIndex: Int,
+         _ deviceIndex: Int,
+         _ homeLightViewModel: HomeLightViewModel) {
+        
+        self._homeLightViewModel = StateObject(wrappedValue: homeLightViewModel)
         self.locationIndex = locationIndex
         self.deviceIndex = deviceIndex
         self.backgroundColor = homeLightViewModel
             .locations[locationIndex]
             .lightDevices[deviceIndex]
             .on ? Color.yellow : Color.clear
-        _homeLightViewModel = StateObject(wrappedValue: homeLightViewModel)
         
     }
     
@@ -31,7 +35,10 @@ struct LightDeviceCardView: View {
                 .foregroundStyle(.ultraThinMaterial)
                 .frame(width: 170, height: 170)
                 .cornerRadius(25)
-            Text(homeLightViewModel.locations[locationIndex].lightDevices[deviceIndex].name)
+            Text(homeLightViewModel
+                .locations[locationIndex]
+                .lightDevices[deviceIndex]
+                .name)
                 .foregroundColor(.primary)
                 .font(.system(size: 22).bold())
                 .multilineTextAlignment(.leading)
@@ -43,14 +50,18 @@ struct LightDeviceCardView: View {
             lightCardContextMenuItems
         }
         .onTapGesture {
-            homeLightViewModel.toggleLightDevice(locationIndex, deviceIndex)
+            homeLightViewModel
+                .toggleLightDevice(locationIndex, deviceIndex)
             buttonVisualToggle()
         }
     }
     
     func buttonVisualToggle() {
         withAnimation {
-            self.backgroundColor = homeLightViewModel.locations[locationIndex].lightDevices[deviceIndex].on ? Color.yellow : Color.clear
+            self.backgroundColor = homeLightViewModel
+                .locations[locationIndex]
+                .lightDevices[deviceIndex]
+                .on ? Color.yellow : Color.clear
         }
     }
     

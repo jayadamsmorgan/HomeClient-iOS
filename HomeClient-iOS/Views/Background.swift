@@ -7,6 +7,7 @@ struct Background: View {
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
+                .blur(radius: 20)
             Rectangle()
                 .ignoresSafeArea()
                 .foregroundStyle(.thinMaterial)
