@@ -25,6 +25,8 @@ struct DeviceDTO: Codable {
 
 enum DeviceType: String {
     
+    // TODO: implement other DeviceTypes
+    
     case lightDevice = "LightDevice"
     
     case sensor = "Sensor"

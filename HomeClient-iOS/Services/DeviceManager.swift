@@ -59,8 +59,7 @@ private class NetworkDeviceManager {
                     let devices: [DeviceDTO] = try JSONDecoder().decode([DeviceDTO].self, from: result!)
                     handleFinish(nil, devices)
                 } catch {
-                    // TODO: change UDP_ERROR to SERIALIZATION_ERROR
-                    handleFinish(Error("Cannot get Devices: Cannot decode Device JSON Array", .UDP_ERROR), [])
+                    handleFinish(Error("Cannot get Devices: Cannot decode Device JSON Array", .SERIALIZATION_ERROR), [])
                 }
             }
         }
@@ -73,7 +72,7 @@ private class NetworkDeviceManager {
                 handleFinish(error)
             }
         } catch {
-            handleFinish(Error("Cannot update Device: Cannot encode Device with ID '\(device.id ?? -1)'", .UDP_ERROR))
+            handleFinish(Error("Cannot update Device: Cannot encode Device with ID '\(device.id ?? -1)'", .SERIALIZATION_ERROR))
         }
     }
 

@@ -16,4 +16,7 @@ enum ErrorType {
     case DEFAULT_ERROR
     
     case UDP_ERROR
+    
+    case SERIALIZATION_ERROR
+    
 }
