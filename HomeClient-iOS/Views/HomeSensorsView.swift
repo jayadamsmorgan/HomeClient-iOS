@@ -14,6 +14,9 @@ struct HomeSensorsView: View {
                 
             }
             .navigationTitle("Sensors")
+            .refreshable {
+                
+            }
             .background {
                 Background()
             }

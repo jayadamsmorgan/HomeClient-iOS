@@ -15,6 +15,8 @@
 		CE5D84892A8BFCEC009B70D0 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = CE5D84882A8BFCEC009B70D0 /* SwiftUIIntrospect */; };
 		CE92B3682A8B262700EAB0EE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92B3672A8B262700EAB0EE /* Location.swift */; };
 		CE92B36A2A8B28C100EAB0EE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92B3692A8B28C100EAB0EE /* Device.swift */; };
+		CEAD0C882A9559E800B6F99D /* AutomationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD0C872A9559E800B6F99D /* AutomationsView.swift */; };
+		CEAD0C8A2A955A3500B6F99D /* AutomationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAD0C892A955A3500B6F99D /* AutomationsViewModel.swift */; };
 		CEBD95F42A86DD4A00FA046A /* HomeClient_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD95F32A86DD4A00FA046A /* HomeClient_iOSApp.swift */; };
 		CEBD95F62A86DD4A00FA046A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD95F52A86DD4A00FA046A /* ContentView.swift */; };
 		CEBD95F82A86DD4B00FA046A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEBD95F72A86DD4B00FA046A /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 		CE44AB992A8D89FB004860B1 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		CE92B3672A8B262700EAB0EE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		CE92B3692A8B28C100EAB0EE /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		CEAD0C872A9559E800B6F99D /* AutomationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomationsView.swift; sourceTree = "<group>"; };
+		CEAD0C892A955A3500B6F99D /* AutomationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomationsViewModel.swift; sourceTree = "<group>"; };
 		CEBD95F02A86DD4A00FA046A /* HomeClient-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HomeClient-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBD95F32A86DD4A00FA046A /* HomeClient_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClient_iOSApp.swift; sourceTree = "<group>"; };
 		CEBD95F52A86DD4A00FA046A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -128,14 +132,15 @@
 		CEBD96032A86E34400FA046A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CEAD0C872A9559E800B6F99D /* AutomationsView.swift */,
+				CEBD961A2A88008100FA046A /* Background.swift */,
 				CEBD95F52A86DD4A00FA046A /* ContentView.swift */,
 				CEBD96012A86E27500FA046A /* HomeLightView.swift */,
-				CEBD96132A86EA9A00FA046A /* SettingsView.swift */,
-				CEBD96152A872EAB00FA046A /* LightDeviceCardView.swift */,
-				CEBD961A2A88008100FA046A /* Background.swift */,
 				CE1415D62A89DC2D0041728C /* HomeSensorsView.swift */,
-				CEE726642A93A28600A73847 /* TestView.swift */,
+				CEBD96152A872EAB00FA046A /* LightDeviceCardView.swift */,
 				CEE726662A94E5F600A73847 /* LocationView.swift */,
+				CEBD96132A86EA9A00FA046A /* SettingsView.swift */,
+				CEE726642A93A28600A73847 /* TestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 				CEBD960F2A86E56700FA046A /* HomeLightViewModel.swift */,
 				CEBD96112A86E61600FA046A /* SettingsViewModel.swift */,
 				CE1415D82A89DC4B0041728C /* HomeSensorsViewModel.swift */,
+				CEAD0C892A955A3500B6F99D /* AutomationsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -265,7 +271,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEBD96022A86E27500FA046A /* HomeLightView.swift in Sources */,
+				CEAD0C882A9559E800B6F99D /* AutomationsView.swift in Sources */,
 				CE1415DB2A8A63770041728C /* Sensor.swift in Sources */,
+				CEAD0C8A2A955A3500B6F99D /* AutomationsViewModel.swift in Sources */,
 				CEE726652A93A28600A73847 /* TestView.swift in Sources */,
 				CE1415D92A89DC4B0041728C /* HomeSensorsViewModel.swift in Sources */,
 				CEC9A4732A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld in Sources */,

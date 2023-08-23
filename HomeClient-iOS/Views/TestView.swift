@@ -1,10 +1,3 @@
-//
-//  TestView.swift
-//  HomeClient-iOS
-//
-//  Created by user on 8/21/23.
-//
-
 import SwiftUI
 
 struct TestView: View {

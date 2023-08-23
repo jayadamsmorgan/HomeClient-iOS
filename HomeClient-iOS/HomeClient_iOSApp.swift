@@ -5,8 +5,9 @@ struct HomeClient_iOSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(homeLightViewModel: HomeLightViewModel(),
-                        settingsViewModel: SettingsViewModel(),
-                        homeSensorsViewModel: HomeSensorsViewModel())
+                        homeSensorsViewModel: HomeSensorsViewModel(),
+                        automationsViewModel: AutomationsViewModel(),
+                        settingsViewModel: SettingsViewModel())
         }
     }
 }

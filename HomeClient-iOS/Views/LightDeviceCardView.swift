@@ -7,7 +7,7 @@ struct LightDeviceCardView: View {
     private let locationIndex: Int
     private let deviceIndex: Int
     
-    @State private var backgroundColor: Color
+    @State public var backgroundColor: Color
     
     init(_ locationIndex: Int,
          _ deviceIndex: Int,
@@ -20,7 +20,6 @@ struct LightDeviceCardView: View {
             .locations[locationIndex]
             .lightDevices[deviceIndex]
             .on ? Color.yellow : Color.clear
-        
     }
     
     var body: some View {
@@ -77,7 +76,12 @@ struct LightDeviceCardView: View {
 struct LightDeviceCardView_Previews: PreviewProvider {
     static var previews: some View {
         let location = Location(locationName: "Bedroom")
-        let device = LightDevice(id: 11, name: "Bedroom Light", location: location, data: "", ipAddress: "", on: true)
+        let device = LightDevice(id: 11,
+                                 name: "Bedroom Light",
+                                 location: location,
+                                 data: "",
+                                 ipAddress: "",
+                                 on: true)
         let error = location.addDevice(device)
         let homeLightViewModel = HomeLightViewModel(locations: [location])
         LightDeviceCardView(0, 0, homeLightViewModel)

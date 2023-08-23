@@ -4,8 +4,9 @@ import SwiftUIIntrospect
 struct ContentView: View {
     
     var homeLightViewModel: HomeLightViewModel
-    var settingsViewModel: SettingsViewModel
     var homeSensorsViewModel: HomeSensorsViewModel
+    var automationsViewModel: AutomationsViewModel
+    var settingsViewModel: SettingsViewModel
     
     var body: some View {
         TabView {
@@ -47,6 +48,11 @@ struct ContentView: View {
                     Image(systemName: "sensor")
                     Text("Sensors")
                 }
+            AutomationsView(automationsViewModel)
+                .tabItem {
+                    Image(systemName: "deskclock")
+                    Text("Automations")
+                }
             SettingsView(settingsViewModel)
                 .tabItem {
                     Image(systemName: "gear")
@@ -66,20 +72,37 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let homeLightViewModel = HomeLightViewModel()
-        let settingsViewModel = SettingsViewModel()
         let homeSensorsViewModel = HomeSensorsViewModel()
+        let automationsViewModel = AutomationsViewModel()
+        let settingsViewModel = SettingsViewModel()
         ContentView(homeLightViewModel: homeLightViewModel,
-                    settingsViewModel: settingsViewModel,
-                    homeSensorsViewModel: homeSensorsViewModel)
+                    homeSensorsViewModel: homeSensorsViewModel,
+                    automationsViewModel: automationsViewModel,
+                    settingsViewModel: settingsViewModel)
         .onAppear {
             let bedroomLocation = Location(locationName: "Bedroom")
-            let bedroomLight = LightDevice(id: 1, name: "Bedroom Light", location: bedroomLocation, data: "", ipAddress: "192.168.1.12", on: false)
-            let deskLight = LightDevice(id: 2, name: "Desk Light", location: bedroomLocation, data: "", ipAddress: "192.168.1.13", on: true)
+            let bedroomLight = LightDevice(id: 1,
+                                           name: "Bedroom Light",
+                                           location: bedroomLocation,
+                                           data: "",
+                                           ipAddress: "192.168.1.12",
+                                           on: false)
+            let deskLight = LightDevice(id: 2,
+                                        name: "Desk Light",
+                                        location: bedroomLocation,
+                                        data: "",
+                                        ipAddress: "192.168.1.13",
+                                        on: true)
             _ = bedroomLocation.addDevice(bedroomLight)
             _ = bedroomLocation.addDevice(deskLight)
             
             let bathroomLocation = Location(locationName: "Bathroom")
-            let bathroomLight = LightDevice(id: 3, name: "Bathroom Light", location: bathroomLocation, data: "", ipAddress: "192.168.1.14", on: false)
+            let bathroomLight = LightDevice(id: 3,
+                                            name: "Bathroom Light",
+                                            location: bathroomLocation,
+                                            data: "",
+                                            ipAddress: "192.168.1.14",
+                                            on: false)
             _ = bathroomLocation.addDevice(bathroomLight)
             
             homeLightViewModel.locations = [bedroomLocation, bathroomLocation]
