@@ -23,7 +23,7 @@ struct LocationView: View {
                         HStack {
                             ForEach(0..<homeLightViewModel
                                 .locations[locationIndex].lightDevices.count, id: \.self) { lightDeviceIndex in
-                                    LightDeviceCardView(locationIndex, lightDeviceIndex, homeLightViewModel)
+                                    LightDeviceCardView(lightDevice: homeLightViewModel.locations[locationIndex].lightDevices[lightDeviceIndex])
                                         .padding(.trailing, 10)
                             }
                         }
@@ -43,7 +43,7 @@ struct LocationView: View {
                         HStack {
                             ForEach(0..<homeLightViewModel
                                 .locations[locationIndex].lightDevices.count, id: \.self) { lightDeviceIndex in
-                                    LightDeviceCardView(locationIndex, lightDeviceIndex, homeLightViewModel)
+                                    LightDeviceCardView(lightDevice: homeLightViewModel.locations[locationIndex].lightDevices[lightDeviceIndex])
                                         .padding(.trailing, 10)
                                     // TODO: Replace with SensorCardView
                             }

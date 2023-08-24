@@ -35,7 +35,15 @@ class LightDevice: Device, ObservableObject {
     
     var ipAddress: String
     
-    var on: Bool
+    @Published internal var on: Bool
+    
+    var isOn: Bool {
+        on
+    }
+    
+    func toggle() {
+        on.toggle()
+    }
     
     func changeLocation(newLocation: Location) {
         self.location = newLocation

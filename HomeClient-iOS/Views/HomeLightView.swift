@@ -79,7 +79,7 @@ struct HomeLightView: View {
                                     
                                     LazyVGrid(columns: [.init(.adaptive(minimum: 200), spacing: -15)],  spacing: 18) {
                                         ForEach(0..<homeLightViewModel.locations[locationIndex].lightDevices.count, id: \.self) { deviceIndex in
-                                            LightDeviceCardView(locationIndex, deviceIndex, homeLightViewModel)
+                                            LightDeviceCardView(lightDevice: homeLightViewModel.locations[locationIndex].lightDevices[deviceIndex])
                                         }
                                     }
                                     .padding(.bottom, 20)

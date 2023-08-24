@@ -2,24 +2,10 @@ import SwiftUI
 
 struct LightDeviceCardView: View {
     
-    @StateObject private var homeLightViewModel: HomeLightViewModel
+    @ObservedObject var lightDevice: LightDevice
     
-    private let locationIndex: Int
-    private let deviceIndex: Int
-    
-    @State public var backgroundColor: Color
-    
-    init(_ locationIndex: Int,
-         _ deviceIndex: Int,
-         _ homeLightViewModel: HomeLightViewModel) {
-        
-        self._homeLightViewModel = StateObject(wrappedValue: homeLightViewModel)
-        self.locationIndex = locationIndex
-        self.deviceIndex = deviceIndex
-        self.backgroundColor = homeLightViewModel
-            .locations[locationIndex]
-            .lightDevices[deviceIndex]
-            .on ? Color.yellow : Color.clear
+    private var backgroundColor: Color {
+        lightDevice.isOn ? .yellow : .clear
     }
     
     var body: some View {
@@ -34,10 +20,7 @@ struct LightDeviceCardView: View {
                 .foregroundStyle(.ultraThinMaterial)
                 .frame(width: 170, height: 170)
                 .cornerRadius(25)
-            Text(homeLightViewModel
-                .locations[locationIndex]
-                .lightDevices[deviceIndex]
-                .name)
+            Text(lightDevice.name)
                 .foregroundColor(.primary)
                 .font(.system(size: 22).bold())
                 .multilineTextAlignment(.leading)
@@ -49,18 +32,9 @@ struct LightDeviceCardView: View {
             lightCardContextMenuItems
         }
         .onTapGesture {
-            homeLightViewModel
-                .toggleLightDevice(locationIndex, deviceIndex)
-            buttonVisualToggle()
-        }
-    }
-    
-    func buttonVisualToggle() {
-        withAnimation {
-            self.backgroundColor = homeLightViewModel
-                .locations[locationIndex]
-                .lightDevices[deviceIndex]
-                .on ? Color.yellow : Color.clear
+            withAnimation {
+                lightDevice.toggle()
+            }
         }
     }
     
@@ -74,16 +48,18 @@ struct LightDeviceCardView: View {
 }
 
 struct LightDeviceCardView_Previews: PreviewProvider {
+    
+    private static let location = Location(locationName: "Bedroom")
+    @StateObject private static var lightDevice: LightDevice = LightDevice(
+        id: 11,
+        name: "Bedroom Light",
+        location: location,
+        data: "",
+        ipAddress: "",
+        on: true
+    )
+    
     static var previews: some View {
-        let location = Location(locationName: "Bedroom")
-        let device = LightDevice(id: 11,
-                                 name: "Bedroom Light",
-                                 location: location,
-                                 data: "",
-                                 ipAddress: "",
-                                 on: true)
-        let error = location.addDevice(device)
-        let homeLightViewModel = HomeLightViewModel(locations: [location])
-        LightDeviceCardView(0, 0, homeLightViewModel)
+        LightDeviceCardView(lightDevice: lightDevice)
     }
 }
