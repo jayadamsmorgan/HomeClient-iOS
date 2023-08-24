@@ -45,8 +45,8 @@ class DeviceFactory {
                 let device = Sensor(id: Int(deviceEntity.id),
                                     name: deviceEntity.name ?? "NONAME",
                                     location: location!,
-                                    ipAddress: deviceEntity.ipAddress ?? "",
                                     data: deviceEntity.data ?? "",
+                                    ipAddress: deviceEntity.ipAddress ?? "",
                                     on: false)
                 devicesTemp.append(device)
                 
@@ -173,8 +173,8 @@ class DeviceFactory {
                 device = Sensor(id: deviceDTO.id!,
                                     name: deviceDTO.name ?? "NONAME",
                                     location: location!,
-                                    ipAddress: deviceDTO.ipAddress!,
                                     data: deviceDTO.data ?? "",
+                                    ipAddress: deviceDTO.ipAddress!,
                                     on: deviceDTO.on ?? false)
                 
             case DeviceType.rgbLight.rawValue:

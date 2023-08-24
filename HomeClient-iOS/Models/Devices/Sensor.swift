@@ -1,26 +1,5 @@
 import Foundation
 
-struct Sensor: Device {
-    
-    mutating func changeLocation(newLocation: Location) {
-        self.location = newLocation
-        _ = newLocation.addDevice(self)
-    }
-    
-    var id: Int
-    
-    var name: String
-    
-    internal var location: Location
-    
-    var ipAddress: String
-    
-    var data: String
-    
-    var on: Bool
-    
-}
-
 struct SensorValue {
     let sensorType: SensorType
     let sensorValue: String
@@ -33,7 +12,7 @@ enum SensorType: String {
     //...
 }
 
-extension Sensor {
+class Sensor: BasicDevice {
     
     func parseSensorValues() -> (Error?, [SensorValue]) {
         let args = data.split(separator: ";")

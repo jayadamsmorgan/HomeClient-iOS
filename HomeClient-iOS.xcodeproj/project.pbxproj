@@ -33,6 +33,7 @@
 		CEC9A46F2A8D1C0F00C4B85D /* LocationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */; };
 		CEC9A4732A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A4712A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld */; };
 		CED64A252A96A44A008F9230 /* RGBLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED64A242A96A44A008F9230 /* RGBLight.swift */; };
+		CED64A272A97BB3A008F9230 /* BasicDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED64A262A97BB3A008F9230 /* BasicDevice.swift */; };
 		CEE726652A93A28600A73847 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE726642A93A28600A73847 /* TestView.swift */; };
 		CEE726672A94E5F600A73847 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE726662A94E5F600A73847 /* LocationView.swift */; };
 		CEF915032A91860100570EF7 /* DeviceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF915022A91860100570EF7 /* DeviceFactory.swift */; };
@@ -65,6 +66,7 @@
 		CEC9A46E2A8D1C0F00C4B85D /* LocationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFactory.swift; sourceTree = "<group>"; };
 		CEC9A4722A8D814600C4B85D /* DeviceCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeviceCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CED64A242A96A44A008F9230 /* RGBLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBLight.swift; sourceTree = "<group>"; };
+		CED64A262A97BB3A008F9230 /* BasicDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicDevice.swift; sourceTree = "<group>"; };
 		CEE726642A93A28600A73847 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		CEE726662A94E5F600A73847 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		CEF915022A91860100570EF7 /* DeviceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFactory.swift; sourceTree = "<group>"; };
@@ -86,9 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				CE92B3692A8B28C100EAB0EE /* Device.swift */,
+				CED64A262A97BB3A008F9230 /* BasicDevice.swift */,
 				CEBD96072A86E3AC00FA046A /* LightDevice.swift */,
-				CE1415DA2A8A63770041728C /* Sensor.swift */,
 				CED64A242A96A44A008F9230 /* RGBLight.swift */,
+				CE1415DA2A8A63770041728C /* Sensor.swift */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				CEBD960C2A86E42200FA046A /* UDPService.swift in Sources */,
 				CE1415D72A89DC2D0041728C /* HomeSensorsView.swift in Sources */,
 				CED64A252A96A44A008F9230 /* RGBLight.swift in Sources */,
+				CED64A272A97BB3A008F9230 /* BasicDevice.swift in Sources */,
 				CEF915032A91860100570EF7 /* DeviceFactory.swift in Sources */,
 				CEBD95F42A86DD4A00FA046A /* HomeClient_iOSApp.swift in Sources */,
 				CEE726672A94E5F600A73847 /* LocationView.swift in Sources */,

@@ -11,7 +11,7 @@ class RGBLight: LightDevice {
         (red, green, blue, _) = getRGBWData(data: data)
     }
     
-    private func getRGBWData(data: String) -> (red: Int, green: Int, blue: Int, white: Int) {
+    func getRGBWData(data: String) -> (red: Int, green: Int, blue: Int, white: Int) {
         let splitData = data.components(separatedBy: ";")
         var red: Int = 0
         var green: Int = 0
@@ -19,20 +19,48 @@ class RGBLight: LightDevice {
         var white: Int = 0
         for key in splitData {
             if key.contains("red") {
-                let strValue = key.components(separatedBy: "=").last ?? ""
-                red = Int(strValue) ?? 0
+                if let strValue = key.components(separatedBy: "=").last {
+                    if let redOpt = Int(strValue) {
+                        red = redOpt
+                    } else {
+                        print("Error parsing Device Data: 'red' value is not an Integer value")
+                    }
+                } else {
+                    print("Error parsing Device Data: 'red' parsing failed")
+                }
             }
             if key.contains("green") {
-                let strValue = key.components(separatedBy: "=").last ?? ""
-                green = Int(strValue) ?? 0
+                if let strValue = key.components(separatedBy: "=").last {
+                    if let greenOpt = Int(strValue) {
+                        green = greenOpt
+                    } else {
+                        print("Error parsing Device Data: 'green' value is not an Integer value")
+                    }
+                } else {
+                    print("Error parsing Device Data: 'green' parsing failed")
+                }
             }
             if key.contains("blue") {
-                let strValue = key.components(separatedBy: "=").last ?? ""
-                blue = Int(strValue) ?? 0
+                if let strValue = key.components(separatedBy: "=").last {
+                    if let blueOpt = Int(strValue) {
+                        blue = blueOpt
+                    } else {
+                        print("Error parsing Device Data: 'blue' value is not an Integer value")
+                    }
+                } else {
+                    print("Error parsing Device Data: 'blue' parsing failed")
+                }
             }
             if key.contains("white") {
-                let strValue = key.components(separatedBy: "=").last ?? ""
-                white = Int(strValue) ?? 0
+                if let strValue = key.components(separatedBy: "=").last {
+                    if let whiteOpt = Int(strValue) {
+                        white = whiteOpt
+                    } else {
+                        print("Error parsing Device Data: 'white' value is not an Integer value")
+                    }
+                } else {
+                    print("Error parsing Device Data: 'white' parsing failed")
+                }
             }
         }
         return (red, green, blue, white)
