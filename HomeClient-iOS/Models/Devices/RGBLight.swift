@@ -8,10 +8,10 @@ class RGBLight: LightDevice {
     
     override init(id: Int, name: String, location: Location, data: String, ipAddress: String, on: Bool) {
         super.init(id: id, name: name, location: location, data: data, ipAddress: ipAddress, on: on)
-        (red, green, blue, _) = getRGBWData(data: data)
+        (red, green, blue, _) = RGBLight.getRGBWData(data: data)
     }
     
-    func getRGBWData(data: String) -> (red: Int, green: Int, blue: Int, white: Int) {
+    static func getRGBWData(data: String) -> (red: Int, green: Int, blue: Int, white: Int) {
         let splitData = data.components(separatedBy: ";")
         var red: Int = 0
         var green: Int = 0

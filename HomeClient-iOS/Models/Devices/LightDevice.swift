@@ -6,7 +6,7 @@ class LightDevice: BasicDevice {
     
     override init(id: Int, name: String, location: Location, data: String, ipAddress: String, on: Bool) {
         super.init(id: id, name: name, location: location, data: data, ipAddress: ipAddress, on: on)
-        brightness = getBrightnessData(data: data)
+        brightness = LightDevice.getBrightnessData(data: data)
     }
     
     var getBrightness: Int {
@@ -23,7 +23,7 @@ class LightDevice: BasicDevice {
         }
     }
     
-    func getBrightnessData(data: String) -> Int {
+    static func getBrightnessData(data: String) -> Int {
         let splitData = data.components(separatedBy: ";")
         var brightness: Int = 100
         for key in splitData {
