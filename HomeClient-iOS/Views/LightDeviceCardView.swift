@@ -8,10 +8,15 @@ struct LightDeviceCardView: View {
         lightDevice.isOn ? .yellow : .clear
     }
     
+    private var brightness: Double {
+        (Double(lightDevice.getBrightness) / 100.0)
+    }
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             Rectangle()
                 .fill(backgroundColor)
+                .opacity(brightness)
                 .frame(width: 110, height: 110)
                 .cornerRadius(40)
                 .offset(x: 30, y: 30)
@@ -27,9 +32,21 @@ struct LightDeviceCardView: View {
                 .frame(minWidth: 95, maxWidth: 130)
                 .padding(.leading, 15)
                 .padding(.top, 15)
+            if lightDevice.getBrightness < 100 && lightDevice.isOn {
+                Text("\(lightDevice.getBrightness)%")
+                    .foregroundColor(.primary)
+                    .font(.system(size: 22).bold())
+                    .padding(.leading, 110)
+                    .padding(.top, 130)
+            }
         }
         .contextMenu {
             lightCardContextMenuItems
+        }
+        .onAppear {
+            withAnimation {
+                lightDevice.setBrightness(90)
+            }
         }
         .onTapGesture {
             withAnimation {
@@ -40,9 +57,9 @@ struct LightDeviceCardView: View {
     
     var lightCardContextMenuItems: some View {
         Group {
-            Button("Action 1", action: { })
-            Button("Action 2", action: { })
-            Button("Action 3", action: { })
+            Button("Action 1", action: { lightDevice.setBrightness(100) })
+            Button("Action 2", action: { lightDevice.setBrightness(60) })
+            Button("Action 3", action: { lightDevice.setBrightness(30) })
         }
     }
 }

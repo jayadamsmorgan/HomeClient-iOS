@@ -16,8 +16,8 @@ class LightDevice: BasicDevice {
     func setBrightness(_ value: Int) {
         if value > 100 {
             brightness = 100
-        } else if value < 0 {
-            brightness = 0
+        } else if value < 1 {
+            brightness = 1
         } else {
             brightness = value
         }
@@ -33,8 +33,8 @@ class LightDevice: BasicDevice {
                         if brightnessOpt > 100 {
                             brightnessOpt = 100
                         }
-                        if brightnessOpt < 0 {
-                            brightnessOpt = 0
+                        if brightnessOpt < 1 {
+                            brightnessOpt = 1
                         }
                         brightness = brightnessOpt
                     } else {
