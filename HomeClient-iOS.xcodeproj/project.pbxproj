@@ -34,6 +34,7 @@
 		CEC9A4732A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEC9A4712A8D814600C4B85D /* HomeClientCoreDataContainer.xcdatamodeld */; };
 		CED64A252A96A44A008F9230 /* RGBLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED64A242A96A44A008F9230 /* RGBLight.swift */; };
 		CED64A272A97BB3A008F9230 /* BasicDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED64A262A97BB3A008F9230 /* BasicDevice.swift */; };
+		CED64A292A982330008F9230 /* RGBLightCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED64A282A982330008F9230 /* RGBLightCardView.swift */; };
 		CEE726652A93A28600A73847 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE726642A93A28600A73847 /* TestView.swift */; };
 		CEE726672A94E5F600A73847 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE726662A94E5F600A73847 /* LocationView.swift */; };
 		CEF915032A91860100570EF7 /* DeviceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF915022A91860100570EF7 /* DeviceFactory.swift */; };
@@ -67,6 +68,7 @@
 		CEC9A4722A8D814600C4B85D /* DeviceCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeviceCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CED64A242A96A44A008F9230 /* RGBLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBLight.swift; sourceTree = "<group>"; };
 		CED64A262A97BB3A008F9230 /* BasicDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicDevice.swift; sourceTree = "<group>"; };
+		CED64A282A982330008F9230 /* RGBLightCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBLightCardView.swift; sourceTree = "<group>"; };
 		CEE726642A93A28600A73847 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		CEE726662A94E5F600A73847 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		CEF915022A91860100570EF7 /* DeviceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFactory.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				CEE726662A94E5F600A73847 /* LocationView.swift */,
 				CEBD96132A86EA9A00FA046A /* SettingsView.swift */,
 				CEE726642A93A28600A73847 /* TestView.swift */,
+				CED64A282A982330008F9230 /* RGBLightCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				CED64A252A96A44A008F9230 /* RGBLight.swift in Sources */,
 				CED64A272A97BB3A008F9230 /* BasicDevice.swift in Sources */,
 				CEF915032A91860100570EF7 /* DeviceFactory.swift in Sources */,
+				CED64A292A982330008F9230 /* RGBLightCardView.swift in Sources */,
 				CEBD95F42A86DD4A00FA046A /* HomeClient_iOSApp.swift in Sources */,
 				CEE726672A94E5F600A73847 /* LocationView.swift in Sources */,
 				CEBD96142A86EA9A00FA046A /* SettingsView.swift in Sources */,

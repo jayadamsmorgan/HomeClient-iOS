@@ -19,7 +19,21 @@ struct TestView: View {
 
         var body: some View {
             VStack {
-                LightDeviceCardView(lightDevice: lightDevice)
+                Menu {
+                    Button(action: {}) {
+                        Label("Add to Reading List", systemImage: "eyeglasses")
+                    }
+                    Button(action: {}) {
+                        Label("Add Bookmarks for All Tabs", systemImage: "book")
+                    }
+                    Button(action: {}) {
+                        Label("Show All Bookmarks", systemImage: "books.vertical")
+                    }
+                } label: {
+                    
+                } primaryAction: {
+                    
+                }
                 LightDeviceCardView(lightDevice: lightDevice)
             }
         }

@@ -14,9 +14,4 @@ class HomeLightViewModel: ObservableObject {
         self.locations = locations
     }
     
-    public func toggleLightDevice(_ locationIndex: Int, _ deviceIndex: Int) {
-        // TODO: send UDP packet to Server
-        locations[locationIndex].lightDevices[deviceIndex].on.toggle()
-    }
-    
 }

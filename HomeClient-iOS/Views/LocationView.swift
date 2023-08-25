@@ -34,6 +34,25 @@ struct LocationView: View {
                 }
                 .padding(.top, 30)
                 VStack(alignment: .leading) {
+                    Text("RGB")
+                        .font(.title)
+                        .bold()
+                        .padding(.leading, 20)
+                        .padding(.top, 20)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(0..<homeLightViewModel
+                                .locations[locationIndex].rgbLightDevices.count, id: \.self) { lightDeviceIndex in
+                                    RGBLightCardView(rgbLightDevice: homeLightViewModel.locations[locationIndex].rgbLightDevices[lightDeviceIndex])
+                                        .padding(.trailing, 10)
+                            }
+                        }
+                        .padding(.leading, 20)
+                        .padding(.trailing, 20)
+                    }
+                    .padding(.top, 5)
+                }
+                VStack(alignment: .leading) {
                     Text("Sensors")
                         .font(.title)
                         .bold()
@@ -67,8 +86,10 @@ struct LocationView_Previews: PreviewProvider {
         let location = Location(locationName: "Bedroom")
         let device1 = LightDevice(id: 11, name: "Bedroom Light", location: location, data: "", ipAddress: "", on: true)
         let device2 = LightDevice(id: 12, name: "Desk Light", location: location, data: "", ipAddress: "", on: false)
-        let error = location.addDevice(device1)
-        let error2 = location.addDevice(device2)
+        let device3 = RGBLight(id: 13, name: "RGB Light", location: location, data: "red=255;green=50;blue=255;brightness=90", ipAddress: "", on: true)
+        let _ = location.addDevice(device1)
+        let _ = location.addDevice(device2)
+        let _ = location.addDevice(device3)
         let homeLightViewModel = HomeLightViewModel(locations: [location])
         LocationView(0, homeLightViewModel)
     }

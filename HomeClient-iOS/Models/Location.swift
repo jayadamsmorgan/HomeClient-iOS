@@ -9,11 +9,16 @@ class Location: Hashable, ObservableObject, Identifiable {
     
     @Published public var locationName: String
     
+    @Published var rgbLightDevices: [RGBLight] = []
     @Published var lightDevices: [LightDevice] = []
     @Published var sensors: [Sensor] = []
     
     public func addDevice(_ newDevice: any Device) -> Bool {
         switch type(of: newDevice) {
+            
+        case is RGBLight.Type:
+            rgbLightDevices.append(newDevice as! RGBLight)
+            return true
             
         case is LightDevice.Type:
             lightDevices.append(newDevice as! LightDevice)

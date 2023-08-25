@@ -47,7 +47,11 @@ struct HomeLightView: View {
                                     
                                     HStack {
                                         Button {
-                                            
+                                            for index in 0..<homeLightViewModel.locations[locationIndex].lightDevices.count {
+                                                withAnimation {
+                                                    homeLightViewModel.locations[locationIndex].lightDevices[index].on = true
+                                                }
+                                            }
                                         } label: {
                                             Text("Turn all on")
                                                 .font(.headline)
@@ -60,7 +64,11 @@ struct HomeLightView: View {
                                                 }
                                         }
                                         Button {
-                                            
+                                            for index in 0..<homeLightViewModel.locations[locationIndex].lightDevices.count {
+                                                withAnimation {
+                                                    homeLightViewModel.locations[locationIndex].lightDevices[index].on = false
+                                                }
+                                            }
                                         } label: {
                                             Text("Turn all off")
                                                 .font(.headline)
@@ -80,6 +88,9 @@ struct HomeLightView: View {
                                     LazyVGrid(columns: [.init(.adaptive(minimum: 200), spacing: -15)],  spacing: 18) {
                                         ForEach(0..<homeLightViewModel.locations[locationIndex].lightDevices.count, id: \.self) { deviceIndex in
                                             LightDeviceCardView(lightDevice: homeLightViewModel.locations[locationIndex].lightDevices[deviceIndex])
+                                        }
+                                        ForEach(0..<homeLightViewModel.locations[locationIndex].rgbLightDevices.count, id: \.self) { deviceIndex in
+                                            RGBLightCardView(rgbLightDevice: homeLightViewModel.locations[locationIndex].rgbLightDevices[deviceIndex])
                                         }
                                     }
                                     .padding(.bottom, 20)
@@ -162,8 +173,15 @@ struct HomeView_Previews: PreviewProvider {
                                             data: "",
                                             ipAddress: "192.168.1.13",
                                             on: true)
+                let rgbLight = RGBLight(id: 11,
+                                           name: "RGB Light",
+                                           location: bedroomLocation,
+                                           data: "red=110;green=30;blue=250;brightness=88",
+                                           ipAddress: "192.168.1.48",
+                                           on: true)
                 _ = bedroomLocation.addDevice(bedroomLight)
                 _ = bedroomLocation.addDevice(deskLight)
+                _ = bedroomLocation.addDevice(rgbLight)
                 
                 let bathroomLocation = Location(locationName: "Bathroom")
                 let bathroomLight = LightDevice(id: 3,

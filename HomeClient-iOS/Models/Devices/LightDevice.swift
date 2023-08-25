@@ -14,12 +14,16 @@ class LightDevice: BasicDevice {
     }
     
     func setBrightness(_ value: Int) {
+        brightness = LightDevice.brightnessValueConstraint(value)
+    }
+    
+    private static func brightnessValueConstraint(_ value: Int) -> Int { // [1-100]
         if value > 100 {
-            brightness = 100
+            return 100
         } else if value < 1 {
-            brightness = 1
+            return 1
         } else {
-            brightness = value
+            return value
         }
     }
     
@@ -29,14 +33,8 @@ class LightDevice: BasicDevice {
         for key in splitData {
             if key.contains("brightness") {
                 if let strValue = key.components(separatedBy: "=").last {
-                    if var brightnessOpt = Int(strValue) {
-                        if brightnessOpt > 100 {
-                            brightnessOpt = 100
-                        }
-                        if brightnessOpt < 1 {
-                            brightnessOpt = 1
-                        }
-                        brightness = brightnessOpt
+                    if let brightnessOpt = Int(strValue) {
+                        brightness = brightnessValueConstraint(brightnessOpt)
                     } else {
                         print("Error parsing Device Data: 'brightness' value is not an Integer value")
                     }

@@ -27,6 +27,8 @@ enum DeviceType: String {
     
     // TODO: implement other DeviceTypes
     
+    case basicDevice = "BasicDevice"
+    
     case lightDevice = "LightDevice"
     
     case sensor = "Sensor"
