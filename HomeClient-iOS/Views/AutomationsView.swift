@@ -2,11 +2,7 @@ import SwiftUI
 
 struct AutomationsView: View {
     
-    @StateObject var automationsViewModel: AutomationsViewModel
-    
-    init(_ automationsViewModel: AutomationsViewModel) {
-        _automationsViewModel = StateObject(wrappedValue: automationsViewModel)
-    }
+    @StateObject var automationsViewModel = AutomationsViewModel.shared
     
     var body: some View {
         NavigationStack {
@@ -23,6 +19,6 @@ struct AutomationsView: View {
 
 struct AutomationsView_Previews: PreviewProvider {
     static var previews: some View {
-        AutomationsView(AutomationsViewModel())
+        AutomationsView()
     }
 }

@@ -3,9 +3,9 @@ import SwiftUI
 
 @MainActor class HomeSensorsViewModel: ObservableObject {
     
-    @Published var sensors: [Sensor] = []
+    public static let shared = HomeSensorsViewModel()
     
-    init() {
+    fileprivate init() {
         
     }
     

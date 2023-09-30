@@ -2,7 +2,9 @@ import Foundation
 
 @MainActor class AutomationsViewModel: ObservableObject {
     
-    init() {
+    public static let shared = AutomationsViewModel()
+    
+    fileprivate init() {
         
     }
     

@@ -8,17 +8,9 @@ class CoreDataService {
     fileprivate var savedDeviceEntities: [DeviceEntity] = []
     fileprivate var savedLocationEntities: [LocationEntity] = []
     
-    fileprivate static var instance: CoreDataService?
+    public static let shared = CoreDataService()
     
-    public static func getInstance() -> CoreDataService {
-        if instance == nil {
-            instance = CoreDataService()
-        }
-        return instance!
-    }
-    
-    
-    init() {
+    private init() {
         container.loadPersistentStores { description, error in
             if let error = error {
                 print("Error loading CoreData: \(error)")
@@ -51,7 +43,7 @@ class CoreDataService {
                 savedDeviceEntities = try container.viewContext.fetch(request)
                 return nil
             } catch let error {
-                return Error(error.localizedDescription, .DEFAULT_ERROR)
+                
             }
             
         case .locationEntity:
@@ -60,9 +52,10 @@ class CoreDataService {
                 savedLocationEntities = try container.viewContext.fetch(request)
                 return nil
             } catch let error {
-                return Error(error.localizedDescription, .DEFAULT_ERROR)
+                
             }
         }
+        return nil
     }
     
     func save() -> Error? {
@@ -72,7 +65,7 @@ class CoreDataService {
                 return error
             }
         } catch let error {
-            return Error(error.localizedDescription, .DEFAULT_ERROR)
+            
         }
         return nil
     }

@@ -5,14 +5,15 @@ struct TestView: View {
     @StateObject private var lightDevice: LightDevice
 
         init() {
-            let location = Location(locationName: "Bedroom")
+            let location = Location(id: 1, locationName: "Bedroom")
             let lightDevice = LightDevice(
                 id: 11,
                 name: "Bedroom Light",
                 location: location,
                 data: "",
                 ipAddress: "",
-                on: true
+                on: true,
+                brightness: 100
             )
             self._lightDevice = StateObject(wrappedValue: lightDevice)
         }

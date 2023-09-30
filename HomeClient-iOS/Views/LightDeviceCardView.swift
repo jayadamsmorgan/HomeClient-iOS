@@ -67,14 +67,15 @@ struct LightDeviceCardView: View {
 
 struct LightDeviceCardView_Previews: PreviewProvider {
     
-    private static let location = Location(locationName: "Bedroom")
+    private static let location = Location(id: 1, locationName: "Bedroom")
     @StateObject private static var lightDevice: LightDevice = LightDevice(
         id: 11,
         name: "Bedroom Light",
         location: location,
         data: "",
         ipAddress: "",
-        on: true
+        on: true,
+        brightness: 100
     )
     
     static var previews: some View {

@@ -3,7 +3,9 @@ import SwiftUI
 
 @MainActor class SettingsViewModel: ObservableObject {
     
-    init() {
+    public static let shared = SettingsViewModel()
+    
+    fileprivate init() {
         
     }
     

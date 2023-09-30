@@ -4,13 +4,31 @@ class RGBLight: LightDevice {
     
     // RGB value range: 0-255 (Int)
     
-    @Published private var red: Int = 0
-    @Published private var green: Int = 0
-    @Published private var blue: Int = 0
+    @Published private var red: Int
+    @Published private var green: Int
+    @Published private var blue: Int
     
-    override init(id: Int, name: String, location: Location, data: String, ipAddress: String, on: Bool) {
-        super.init(id: id, name: name, location: location, data: data, ipAddress: ipAddress, on: on)
-        (red, green, blue, _) = RGBLight.getRGBWData(data: data)
+    init(id: Int, name: String, location: Location,
+         data: String, ipAddress: String, on: Bool,
+         brightness: Int, red: Int, green: Int, blue: Int) {
+        self.red = red
+        self.green = green
+        self.blue = blue
+        super.init(id: id, name: name, location: location, data: data, ipAddress: ipAddress, on: on, brightness: brightness)
+    }
+    
+    fileprivate enum CodingKeys: String, CodingKey {
+        case red
+        case green
+        case blue
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        red = try container.decode(Int.self, forKey: .red)
+        green = try container.decode(Int.self, forKey: .green)
+        blue = try container.decode(Int.self, forKey: .blue)
+        try super.init(from: decoder)
     }
     
     var getRed: Int {
@@ -26,80 +44,15 @@ class RGBLight: LightDevice {
     }
     
     func setRed(_ red: Int) {
-        self.red = RGBLight.rgbwValueConstraint(red)
+        self.red = constraint0to255(value: red)
     }
     
     func setGreen(_ green: Int) {
-        self.green = RGBLight.rgbwValueConstraint(green)
+        self.green = constraint0to255(value: green)
     }
     
     func setBlue(_ blue: Int) {
-        self.blue = RGBLight.rgbwValueConstraint(blue)
-    }
-    
-    private static func rgbwValueConstraint(_ value: Int) -> Int { // [0-255]
-        if value > 255 {
-            return 255
-        } else if value < 0 {
-            return 0
-        } else {
-            return value
-        }
-    }
-    
-    static func getRGBWData(data: String) -> (red: Int, green: Int, blue: Int, white: Int) {
-        let splitData = data.split(separator: ";")
-        var red: Int = 0
-        var green: Int = 0
-        var blue: Int = 0
-        var white: Int = 0
-        for key in splitData {
-            if key.contains("red") {
-                if let strValue = key.split(separator: "=").last {
-                    if let redOpt = Int(strValue) {
-                        red = rgbwValueConstraint(redOpt)
-                    } else {
-                        print("Error parsing Device Data: 'red' value is not an Integer value")
-                    }
-                } else {
-                    print("Error parsing Device Data: 'red' parsing failed")
-                }
-            }
-            if key.contains("green") {
-                if let strValue = key.components(separatedBy: "=").last {
-                    if let greenOpt = Int(strValue) {
-                        green = rgbwValueConstraint(greenOpt)
-                    } else {
-                        print("Error parsing Device Data: 'green' value is not an Integer value")
-                    }
-                } else {
-                    print("Error parsing Device Data: 'green' parsing failed")
-                }
-            }
-            if key.contains("blue") {
-                if let strValue = key.components(separatedBy: "=").last {
-                    if let blueOpt = Int(strValue) {
-                        blue = rgbwValueConstraint(blueOpt)
-                    } else {
-                        print("Error parsing Device Data: 'blue' value is not an Integer value")
-                    }
-                } else {
-                    print("Error parsing Device Data: 'blue' parsing failed")
-                }
-            }
-            if key.contains("white") {
-                if let strValue = key.components(separatedBy: "=").last {
-                    if let whiteOpt = Int(strValue) {
-                        white = rgbwValueConstraint(whiteOpt)
-                    } else {
-                        print("Error parsing Device Data: 'white' value is not an Integer value")
-                    }
-                } else {
-                    print("Error parsing Device Data: 'white' parsing failed")
-                }
-            }
-        }
-        return (red, green, blue, white)
+        self.blue = constraint0to255(value: blue)
     }
     
 }

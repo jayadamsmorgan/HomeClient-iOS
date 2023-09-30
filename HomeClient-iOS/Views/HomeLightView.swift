@@ -2,13 +2,12 @@ import SwiftUI
 
 struct HomeLightView: View {
     
-    @StateObject private var homeLightViewModel: HomeLightViewModel
+    @StateObject private var homeLightViewModel = HomeLightViewModel.shared
     
     @State private var isLocationSheetPresented = false
     @State private var sheetLocationIndex: Int = 0
     
-    init(_ homeViewModel: HomeLightViewModel) {
-        _homeLightViewModel = StateObject(wrappedValue: homeViewModel)
+    init() {
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene
         if let window = windowScene?.windows.first {
@@ -26,7 +25,7 @@ struct HomeLightView: View {
                 } else {
                     VStack {
                         ForEach(0..<homeLightViewModel.locations.count, id: \.self) { locationIndex in
-                            if homeLightViewModel.locations[locationIndex].lightDevices.count == 0 {
+                            if homeLightViewModel.locations[locationIndex].devices.count == 0 {
                                 Color.clear
                             } else {
                                 VStack(alignment: .leading) {
@@ -47,9 +46,11 @@ struct HomeLightView: View {
                                     
                                     HStack {
                                         Button {
-                                            for index in 0..<homeLightViewModel.locations[locationIndex].lightDevices.count {
-                                                withAnimation {
-                                                    homeLightViewModel.locations[locationIndex].lightDevices[index].on = true
+                                            for index in 0..<homeLightViewModel.locations[locationIndex].devices.count {
+                                                if homeLightViewModel.locations[locationIndex].devices[index] is LightDevice {
+                                                    withAnimation {
+                                                        homeLightViewModel.locations[locationIndex].devices[index].on = true
+                                                    }
                                                 }
                                             }
                                         } label: {
@@ -64,9 +65,11 @@ struct HomeLightView: View {
                                                 }
                                         }
                                         Button {
-                                            for index in 0..<homeLightViewModel.locations[locationIndex].lightDevices.count {
-                                                withAnimation {
-                                                    homeLightViewModel.locations[locationIndex].lightDevices[index].on = false
+                                            for index in 0..<homeLightViewModel.locations[locationIndex].devices.count {
+                                                if homeLightViewModel.locations[locationIndex].devices[index] is LightDevice {
+                                                    withAnimation {
+                                                        homeLightViewModel.locations[locationIndex].devices[index].on = false
+                                                    }
                                                 }
                                             }
                                         } label: {
@@ -86,11 +89,10 @@ struct HomeLightView: View {
                                     
                                     
                                     LazyVGrid(columns: [.init(.adaptive(minimum: 200), spacing: -15)],  spacing: 18) {
-                                        ForEach(0..<homeLightViewModel.locations[locationIndex].lightDevices.count, id: \.self) { deviceIndex in
-                                            LightDeviceCardView(lightDevice: homeLightViewModel.locations[locationIndex].lightDevices[deviceIndex])
-                                        }
-                                        ForEach(0..<homeLightViewModel.locations[locationIndex].rgbLightDevices.count, id: \.self) { deviceIndex in
-                                            RGBLightCardView(rgbLightDevice: homeLightViewModel.locations[locationIndex].rgbLightDevices[deviceIndex])
+                                        ForEach(0..<homeLightViewModel.locations[locationIndex].devices.count, id:\.self) { deviceIndex in
+                                            if homeLightViewModel.locations[locationIndex].devices[deviceIndex] is LightDevice {
+                                                LightDeviceCardView(lightDevice: homeLightViewModel.locations[locationIndex].devices[deviceIndex] as! LightDevice)
+                                            }
                                         }
                                     }
                                     .padding(.bottom, 20)
@@ -127,7 +129,7 @@ struct HomeLightView: View {
         }
         .sheet(isPresented: $isLocationSheetPresented) {
             ZStack(alignment: .topTrailing) {
-                LocationView(sheetLocationIndex, homeLightViewModel)
+                LocationView(sheetLocationIndex)
                     .onAppear {
                         
                     }
@@ -157,42 +159,37 @@ struct HomeLightView: View {
 struct HomeView_Previews: PreviewProvider {
     
     static var previews: some View {
-        let homeLightViewModel = HomeLightViewModel()
-        HomeLightView(homeLightViewModel)
+        HomeLightView()
             .onAppear {
-                let bedroomLocation = Location(locationName: "Bedroom")
+                let bedroomLocation = Location(id: 1, locationName: "Bedroom")
                 let bedroomLight = LightDevice(id: 1,
                                                name: "Bedroom Light",
                                                location: bedroomLocation,
                                                data: "",
                                                ipAddress: "192.168.1.12",
-                                               on: false)
+                                               on: false,
+                                               brightness: 88)
                 let deskLight = LightDevice(id: 2,
                                             name: "Desk Light",
                                             location: bedroomLocation,
                                             data: "",
                                             ipAddress: "192.168.1.13",
-                                            on: true)
-                let rgbLight = RGBLight(id: 11,
-                                           name: "RGB Light",
-                                           location: bedroomLocation,
-                                           data: "red=110;green=30;blue=250;brightness=88",
-                                           ipAddress: "192.168.1.48",
-                                           on: true)
-                _ = bedroomLocation.addDevice(bedroomLight)
-                _ = bedroomLocation.addDevice(deskLight)
-                _ = bedroomLocation.addDevice(rgbLight)
+                                            on: true,
+                                            brightness: 88)
+                let rgbDevice = RGBLight(id: 4, name: "RGB", location: bedroomLocation, data: "", ipAddress: "", on: true, brightness: 100, red: 100, green: 0, blue: 255)
+                bedroomLocation.devices = [bedroomLight, deskLight, rgbDevice]
                 
-                let bathroomLocation = Location(locationName: "Bathroom")
+                let bathroomLocation = Location(id: 2, locationName: "Bathroom")
                 let bathroomLight = LightDevice(id: 3,
                                                 name: "Bathroom Light",
                                                 location: bathroomLocation,
                                                 data: "",
                                                 ipAddress: "192.168.1.14",
-                                                on: false)
-                _ = bathroomLocation.addDevice(bathroomLight)
+                                                on: false,
+                                                brightness: 88)
+                bathroomLocation.devices = [bathroomLight]
                 
-                homeLightViewModel.locations = [bedroomLocation, bathroomLocation]
+                HomeLightViewModel.shared.locations = [bedroomLocation, bathroomLocation]
             }
     }
 }

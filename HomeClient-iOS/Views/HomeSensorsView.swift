@@ -2,11 +2,7 @@ import SwiftUI
 
 struct HomeSensorsView: View {
     
-    @StateObject var homeSensorsViewModel: HomeSensorsViewModel
-    
-    init(_ homeSensorsViewModel: HomeSensorsViewModel) {
-        _homeSensorsViewModel = StateObject(wrappedValue: homeSensorsViewModel)
-    }
+    @StateObject var homeSensorsViewModel = HomeSensorsViewModel.shared
     
     var body: some View {
         NavigationStack {
@@ -26,7 +22,6 @@ struct HomeSensorsView: View {
 
 struct HomeSensorsView_Previews: PreviewProvider {
     static var previews: some View {
-        let homeSensorsViewModel = HomeSensorsViewModel()
-        HomeSensorsView(homeSensorsViewModel)
+        HomeSensorsView()
     }
 }

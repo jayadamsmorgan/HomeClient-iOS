@@ -1,40 +1,36 @@
 import Foundation
 import SwiftUI
 
-class Location: Hashable, ObservableObject, Identifiable {
+class Location: Hashable, ObservableObject, Identifiable, Codable {
     
-    init(locationName: String) {
-        self.locationName = locationName
+    func encode(to encoder: Encoder) throws {
+        
     }
+    
+    fileprivate enum CodingKeys: String, CodingKey {
+        case id
+        case locationName
+        case devices
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.locationName = try container.decode(String.self, forKey: .locationName)
+        let deviceWrappers = try container.decode([DeviceWrapper].self, forKey: .devices)
+        self.devices = deviceWrappers.map { $0.device }
+    }
+    
+    init(id: Int, locationName: String) {
+        self.locationName = locationName
+        self.id = id
+    }
+    
+    public let id: Int
     
     @Published public var locationName: String
     
-    @Published var rgbLightDevices: [RGBLight] = []
-    @Published var lightDevices: [LightDevice] = []
-    @Published var sensors: [Sensor] = []
-    
-    public func addDevice(_ newDevice: any Device) -> Bool {
-        switch type(of: newDevice) {
-            
-        case is RGBLight.Type:
-            rgbLightDevices.append(newDevice as! RGBLight)
-            return true
-            
-        case is LightDevice.Type:
-            lightDevices.append(newDevice as! LightDevice)
-            return true
-            
-        case is Sensor.Type:
-            sensors.append(newDevice as! Sensor)
-            return true
-            
-        default:
-            print("DeviceType is not yet supported")
-            
-        }
-        
-        return false
-    }
+    @Published public var devices: [any Device] = []
     
     private var identifier: String {
             return UUID().uuidString

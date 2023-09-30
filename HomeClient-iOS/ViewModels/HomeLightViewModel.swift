@@ -6,12 +6,18 @@ class HomeLightViewModel: ObservableObject {
     
     @Published public var locations: [Location] = []
 
-    init() {
+    public static let shared = HomeLightViewModel()
+    
+    fileprivate init() {
         
     }
     
     init(locations: [Location]) {
         self.locations = locations
+    }
+    
+    public func fetchLocations() {
+        
     }
     
 }

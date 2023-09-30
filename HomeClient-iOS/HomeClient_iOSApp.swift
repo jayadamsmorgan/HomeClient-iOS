@@ -4,10 +4,7 @@ import SwiftUI
 struct HomeClient_iOSApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(homeLightViewModel: HomeLightViewModel(),
-                        homeSensorsViewModel: HomeSensorsViewModel(),
-                        automationsViewModel: AutomationsViewModel(),
-                        settingsViewModel: SettingsViewModel())
+            ContentView()
         }
     }
 }

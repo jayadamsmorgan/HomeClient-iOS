@@ -2,11 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @StateObject private var settingsViewModel: SettingsViewModel
-    
-    init(_ settingsViewModel: SettingsViewModel) {
-        _settingsViewModel = StateObject(wrappedValue: settingsViewModel)
-    }
+    @StateObject private var settingsViewModel = SettingsViewModel.shared
     
     var body: some View {
         NavigationStack {
@@ -23,6 +19,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(SettingsViewModel())
+        SettingsView()
     }
 }

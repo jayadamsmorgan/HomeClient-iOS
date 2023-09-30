@@ -3,57 +3,55 @@ import SwiftUIIntrospect
 
 struct ContentView: View {
     
-    var homeLightViewModel: HomeLightViewModel
-    var homeSensorsViewModel: HomeSensorsViewModel
-    var automationsViewModel: AutomationsViewModel
-    var settingsViewModel: SettingsViewModel
-    
     var body: some View {
         TabView {
-            HomeLightView(homeLightViewModel)
+            HomeLightView()
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
                 .onAppear {
-                    let bedroomLocation = Location(locationName: "Bedroom")
+                    let bedroomLocation = Location(id: 1, locationName: "Bedroom")
                     let bedroomLight = LightDevice(id: 1,
                                                    name: "Bedroom Light",
                                                    location: bedroomLocation,
                                                    data: "",
                                                    ipAddress: "192.168.1.12",
-                                                   on: false)
+                                                   on: false,
+                                                   brightness: 100)
                     let deskLight = LightDevice(id: 2,
                                                 name: "Desk Light",
                                                 location: bedroomLocation,
                                                 data: "",
                                                 ipAddress: "192.168.1.13",
-                                                on: true)
-                    _ = bedroomLocation.addDevice(bedroomLight)
-                    _ = bedroomLocation.addDevice(deskLight)
+                                                on: true,
+                                                brightness: 60)
+                    bedroomLocation.devices.append(bedroomLight)
+                    bedroomLocation.devices.append(deskLight)
                     
-                    let bathroomLocation = Location(locationName: "Bathroom")
+                    let bathroomLocation = Location(id: 2, locationName: "Bathroom")
                     let bathroomLight = LightDevice(id: 3,
                                                     name: "Bathroom Light",
                                                     location: bathroomLocation,
                                                     data: "",
                                                     ipAddress: "192.168.1.14",
-                                                    on: false)
-                    _ = bathroomLocation.addDevice(bathroomLight)
+                                                    on: false,
+                                                    brightness: 100)
+                    bathroomLocation.devices.append(bathroomLight)
                     
-                    homeLightViewModel.locations = [bedroomLocation, bathroomLocation]
+                    HomeLightViewModel.shared.locations = [bedroomLocation, bathroomLocation]
                 }
-            HomeSensorsView(homeSensorsViewModel)
+            HomeSensorsView()
                 .tabItem {
                     Image(systemName: "sensor")
                     Text("Sensors")
                 }
-            AutomationsView(automationsViewModel)
+            AutomationsView()
                 .tabItem {
                     Image(systemName: "deskclock")
                     Text("Automations")
                 }
-            SettingsView(settingsViewModel)
+            SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
@@ -71,41 +69,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let homeLightViewModel = HomeLightViewModel()
-        let homeSensorsViewModel = HomeSensorsViewModel()
-        let automationsViewModel = AutomationsViewModel()
-        let settingsViewModel = SettingsViewModel()
-        ContentView(homeLightViewModel: homeLightViewModel,
-                    homeSensorsViewModel: homeSensorsViewModel,
-                    automationsViewModel: automationsViewModel,
-                    settingsViewModel: settingsViewModel)
-        .onAppear {
-            let bedroomLocation = Location(locationName: "Bedroom")
-            let bedroomLight = LightDevice(id: 1,
-                                           name: "Bedroom Light",
-                                           location: bedroomLocation,
-                                           data: "",
-                                           ipAddress: "192.168.1.12",
-                                           on: false)
-            let deskLight = LightDevice(id: 2,
-                                        name: "Desk Light",
-                                        location: bedroomLocation,
-                                        data: "",
-                                        ipAddress: "192.168.1.13",
-                                        on: true)
-            _ = bedroomLocation.addDevice(bedroomLight)
-            _ = bedroomLocation.addDevice(deskLight)
-            
-            let bathroomLocation = Location(locationName: "Bathroom")
-            let bathroomLight = LightDevice(id: 3,
-                                            name: "Bathroom Light",
-                                            location: bathroomLocation,
-                                            data: "",
-                                            ipAddress: "192.168.1.14",
-                                            on: false)
-            _ = bathroomLocation.addDevice(bathroomLight)
-            
-            homeLightViewModel.locations = [bedroomLocation, bathroomLocation]
-        }
+        ContentView()
     }
 }

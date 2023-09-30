@@ -2,11 +2,29 @@ import Foundation
 
 class LightDevice: BasicDevice {
     
-    @Published private var brightness: Int = 100
+    @Published private var brightness: Int
     
-    override init(id: Int, name: String, location: Location, data: String, ipAddress: String, on: Bool) {
+    init(id: Int, name: String, location: Location, data: String, ipAddress: String, on: Bool, brightness: Int) {
+        self.brightness = brightness
         super.init(id: id, name: name, location: location, data: data, ipAddress: ipAddress, on: on)
-        brightness = LightDevice.getBrightnessData(data: data)
+        self.brightness = constraint0to100(value: brightness)
+    }
+    
+    fileprivate enum CodingKeys: String, CodingKey {
+        case brightness
+    }
+    
+    required init(from decoder: Decoder) throws {
+        var container = try decoder.container(keyedBy: CodingKeys.self)
+        brightness = try container.decode(Int.self, forKey: .brightness)
+        try super.init(from: decoder)
+        brightness = constraint0to100(value: brightness)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(brightness, forKey: .brightness)
+        try super.encode(to: encoder)
     }
     
     var getBrightness: Int {
@@ -14,36 +32,7 @@ class LightDevice: BasicDevice {
     }
     
     func setBrightness(_ value: Int) {
-        brightness = LightDevice.brightnessValueConstraint(value)
-    }
-    
-    private static func brightnessValueConstraint(_ value: Int) -> Int { // [1-100]
-        if value > 100 {
-            return 100
-        } else if value < 1 {
-            return 1
-        } else {
-            return value
-        }
-    }
-    
-    static func getBrightnessData(data: String) -> Int {
-        let splitData = data.components(separatedBy: ";")
-        var brightness: Int = 100
-        for key in splitData {
-            if key.contains("brightness") {
-                if let strValue = key.components(separatedBy: "=").last {
-                    if let brightnessOpt = Int(strValue) {
-                        brightness = brightnessValueConstraint(brightnessOpt)
-                    } else {
-                        print("Error parsing Device Data: 'brightness' value is not an Integer value")
-                    }
-                } else {
-                    print("Error parsing Device Data: 'brigtness' parsing failed")
-                }
-            }
-        }
-        return brightness
+        brightness = constraint0to100(value: value)
     }
 
 }
