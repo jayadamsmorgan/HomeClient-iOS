@@ -9,9 +9,6 @@ struct TestView: View {
             let lightDevice = LightDevice(
                 id: 11,
                 name: "Bedroom Light",
-                location: location,
-                data: "",
-                ipAddress: "",
                 on: true,
                 brightness: 100
             )

@@ -9,7 +9,7 @@ struct LightDeviceCardView: View {
     }
     
     private var brightness: Double {
-        (Double(lightDevice.getBrightness) / 2 + 50) / 100.0 // Making brightness range to be [0.5-1.0]
+        (Double(lightDevice.getBrightness) / 2 + 50) / 100.0 // Making "visible brightness" range to be [0.5-1.0]
     }
     
     var body: some View {
@@ -54,9 +54,33 @@ struct LightDeviceCardView: View {
     var menuItems: some View {
         Group {
             if lightDevice.isOn {
-                Button("Turn off", action: { withAnimation { lightDevice.toggle() } })
+                Button("Turn off", action: {
+                    withAnimation {
+                        lightDevice.toggle()
+                    }
+                    let request = NetworkManager.shared.post(resource: "/devices/\(lightDevice.id)", object: DeviceWrapper(deviceType: "RGBLightDevice", device: lightDevice))
+                    request?
+                        .onSuccess { callback in
+                            print("OK")
+                        }
+                        .onFailure { callback in
+                            print(callback)
+                        }
+                })
             } else {
-                Button("Turn on", action: { withAnimation { lightDevice.toggle() } })
+                Button("Turn on",  action: {
+                    withAnimation {
+                        lightDevice.toggle()
+                    }
+                    let request = NetworkManager.shared.post(resource: "/devices/\(lightDevice.id)", object: DeviceWrapper(deviceType: "RGBLightDevice", device: lightDevice))
+                    request?
+                        .onSuccess { callback in
+                            print("OK")
+                        }
+                        .onFailure { callback in
+                            print(callback)
+                        }
+                })
             }
             Button("Set full brightness", action: { withAnimation { lightDevice.setBrightness(100) } })
             Button("Set brightness 60%", action: { withAnimation { lightDevice.setBrightness(60) } })
@@ -68,14 +92,14 @@ struct LightDeviceCardView: View {
 struct LightDeviceCardView_Previews: PreviewProvider {
     
     private static let location = Location(id: 1, locationName: "Bedroom")
-    @StateObject private static var lightDevice: LightDevice = LightDevice(
+    @StateObject private static var lightDevice: RGBLight = RGBLight(
         id: 11,
         name: "Bedroom Light",
-        location: location,
-        data: "",
-        ipAddress: "",
         on: true,
-        brightness: 100
+        brightness: 100,
+        red: 255,
+        green: 0,
+        blue: 255
     )
     
     static var previews: some View {

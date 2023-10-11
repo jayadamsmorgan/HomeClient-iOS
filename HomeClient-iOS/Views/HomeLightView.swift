@@ -45,44 +45,8 @@ struct HomeLightView: View {
                                     }
                                     
                                     HStack {
-                                        Button {
-                                            for index in 0..<homeLightViewModel.locations[locationIndex].devices.count {
-                                                if homeLightViewModel.locations[locationIndex].devices[index] is LightDevice {
-                                                    withAnimation {
-                                                        homeLightViewModel.locations[locationIndex].devices[index].on = true
-                                                    }
-                                                }
-                                            }
-                                        } label: {
-                                            Text("Turn all on")
-                                                .font(.headline)
-                                                .padding()
-                                                .foregroundColor(Color.primary)
-                                                .background {
-                                                    Rectangle()
-                                                        .foregroundStyle(.ultraThinMaterial)
-                                                        .cornerRadius(25)
-                                                }
-                                        }
-                                        Button {
-                                            for index in 0..<homeLightViewModel.locations[locationIndex].devices.count {
-                                                if homeLightViewModel.locations[locationIndex].devices[index] is LightDevice {
-                                                    withAnimation {
-                                                        homeLightViewModel.locations[locationIndex].devices[index].on = false
-                                                    }
-                                                }
-                                            }
-                                        } label: {
-                                            Text("Turn all off")
-                                                .font(.headline)
-                                                .padding()
-                                                .foregroundColor(Color.primary)
-                                                .background {
-                                                    Rectangle()
-                                                        .foregroundStyle(.ultraThinMaterial)
-                                                        .cornerRadius(25)
-                                                }
-                                        }
+                                        TurnAllInLocationButton(locationIndex: locationIndex, on: true)
+                                        TurnAllInLocationButton(locationIndex: locationIndex, on: false)
                                     }
                                     .padding(.bottom, 20)
                                     .padding(.leading, 20)
@@ -105,7 +69,7 @@ struct HomeLightView: View {
                 }
             }
             .refreshable {
-                
+                homeLightViewModel.fetchLocations()
             }
             .navigationTitle("Home Lights")
             .toolbar {
@@ -156,6 +120,35 @@ struct HomeLightView: View {
     }
 }
 
+struct TurnAllInLocationButton: View {
+    
+    let locationIndex: Int
+    let on: Bool
+    
+    var body: some View {
+        Button {
+            for index in 0..<HomeLightViewModel.shared.locations[locationIndex].devices.count {
+                if HomeLightViewModel.shared.locations[locationIndex].devices[index] is LightDevice {
+                    withAnimation {
+                        HomeLightViewModel.shared.locations[locationIndex].devices[index].on = on
+                    }
+                }
+            }
+        } label: {
+            Text(on ? "Turn all on" : "Turn all off")
+                .font(.headline)
+                .padding()
+                .foregroundColor(Color.primary)
+                .background {
+                    Rectangle()
+                        .foregroundStyle(.ultraThinMaterial)
+                        .cornerRadius(25)
+                }
+        }
+    }
+    
+}
+
 struct HomeView_Previews: PreviewProvider {
     
     static var previews: some View {
@@ -164,27 +157,22 @@ struct HomeView_Previews: PreviewProvider {
                 let bedroomLocation = Location(id: 1, locationName: "Bedroom")
                 let bedroomLight = LightDevice(id: 1,
                                                name: "Bedroom Light",
-                                               location: bedroomLocation,
-                                               data: "",
-                                               ipAddress: "192.168.1.12",
                                                on: false,
                                                brightness: 88)
                 let deskLight = LightDevice(id: 2,
                                             name: "Desk Light",
-                                            location: bedroomLocation,
-                                            data: "",
-                                            ipAddress: "192.168.1.13",
                                             on: true,
                                             brightness: 88)
-                let rgbDevice = RGBLight(id: 4, name: "RGB", location: bedroomLocation, data: "", ipAddress: "", on: true, brightness: 100, red: 100, green: 0, blue: 255)
+                let rgbDevice = RGBLight(id: 4,
+                                         name: "RGB",
+                                         on: true,
+                                         brightness: 100,
+                                         red: 100, green: 0, blue: 255)
                 bedroomLocation.devices = [bedroomLight, deskLight, rgbDevice]
                 
                 let bathroomLocation = Location(id: 2, locationName: "Bathroom")
                 let bathroomLight = LightDevice(id: 3,
                                                 name: "Bathroom Light",
-                                                location: bathroomLocation,
-                                                data: "",
-                                                ipAddress: "192.168.1.14",
                                                 on: false,
                                                 brightness: 88)
                 bathroomLocation.devices = [bathroomLight]

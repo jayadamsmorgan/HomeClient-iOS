@@ -6,9 +6,9 @@ class TokenService {
     
     private let sb = Strongbox()
     
-    private let tokenKeychainKey : String = "HomeClientKeychain"
+    private let tokenKeychainKey : String = "HomeClientToken"
     
-    private var token : String = ""
+    var token : String = ""
     
     public static let shared = TokenService()
     

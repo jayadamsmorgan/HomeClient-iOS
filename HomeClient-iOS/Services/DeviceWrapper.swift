@@ -1,15 +1,22 @@
 import Foundation
 
-struct DeviceWrapper: Decodable {
+struct DeviceWrapper: Codable {
     var device: BasicDevice
+    var deviceType: String
         
-    fileprivate enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case deviceType
+        case device
+    }
+    
+    init(deviceType: String, device: BasicDevice) {
+        self.deviceType = deviceType
+        self.device = device
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let deviceType = try container.decode(String.self, forKey: .deviceType)
+        deviceType = try container.decode(String.self, forKey: .deviceType)
         
         guard let device = try DeviceFactory.shared.create(deviceType: deviceType, from: decoder) else {
             throw DecodingError.dataCorruptedError(forKey: .deviceType, in: container, debugDescription: "Invalid device type")

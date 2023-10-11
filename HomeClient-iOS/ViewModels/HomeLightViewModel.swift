@@ -17,6 +17,17 @@ class HomeLightViewModel: ObservableObject {
     }
     
     public func fetchLocations() {
+        DeviceService.shared.getLocations(handleFinish: { locations, error in
+            if let error = error {
+                print(error)
+            } else {
+                print("OK")
+                self.locations = locations
+            }
+        })
+    }
+    
+    func sendDeviceState() {
         
     }
     

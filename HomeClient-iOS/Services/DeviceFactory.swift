@@ -5,8 +5,14 @@ class DeviceFactory {
     fileprivate var registry = [String : BasicDevice.Type]()
     
     fileprivate init() {
+        // BasicDevice
         register(deviceType: "BasicDevice", deviceClass: BasicDevice.self)
+        
+        // LightDevices
+        register(deviceType: "LightDevice", deviceClass: LightDevice.self)
         register(deviceType: "lights.LightDevice", deviceClass: LightDevice.self)
+
+        register(deviceType: "RGBLightDevice", deviceClass: RGBLight.self)
         register(deviceType: "lights.RGBLightDevice", deviceClass: RGBLight.self)
     }
     

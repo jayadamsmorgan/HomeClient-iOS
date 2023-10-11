@@ -4,18 +4,22 @@ class LightDevice: BasicDevice {
     
     @Published private var brightness: Int
     
-    init(id: Int, name: String, location: Location, data: String, ipAddress: String, on: Bool, brightness: Int) {
+    init(id: Int, name: String, on: Bool, brightness: Int) {
         self.brightness = brightness
-        super.init(id: id, name: name, location: location, data: data, ipAddress: ipAddress, on: on)
+        super.init(id: id, name: name, on: on)
         self.brightness = constraint0to100(value: brightness)
     }
     
-    fileprivate enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case on
         case brightness
     }
     
     required init(from decoder: Decoder) throws {
-        var container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: DeviceWrapper.CodingKeys.self)
+            .nestedContainer(keyedBy: LightDevice.CodingKeys.self, forKey: .device)
         brightness = try container.decode(Int.self, forKey: .brightness)
         try super.init(from: decoder)
         brightness = constraint0to100(value: brightness)

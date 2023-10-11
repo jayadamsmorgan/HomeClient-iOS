@@ -8,23 +8,23 @@ class RGBLight: LightDevice {
     @Published private var green: Int
     @Published private var blue: Int
     
-    init(id: Int, name: String, location: Location,
-         data: String, ipAddress: String, on: Bool,
+    init(id: Int, name: String, on: Bool,
          brightness: Int, red: Int, green: Int, blue: Int) {
         self.red = red
         self.green = green
         self.blue = blue
-        super.init(id: id, name: name, location: location, data: data, ipAddress: ipAddress, on: on, brightness: brightness)
+        super.init(id: id, name: name, on: on, brightness: brightness)
     }
     
-    fileprivate enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case red
         case green
         case blue
     }
     
     required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: DeviceWrapper.CodingKeys.self)
+            .nestedContainer(keyedBy: RGBLight.CodingKeys.self, forKey: .device)
         red = try container.decode(Int.self, forKey: .red)
         green = try container.decode(Int.self, forKey: .green)
         blue = try container.decode(Int.self, forKey: .blue)

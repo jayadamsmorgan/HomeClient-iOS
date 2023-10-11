@@ -14,23 +14,22 @@ class BasicDevice: Device, ObservableObject {
         lhs.id == rhs.id
     }
     
-    fileprivate enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case name
-        case location
-        case data
-        case ipAddress
         case on
+        case location
+        case ipAddress
+        case data
     }
     
     required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let values = try decoder.container(keyedBy: DeviceWrapper.CodingKeys.self).nestedContainer(keyedBy: BasicDevice.CodingKeys.self, forKey: .device)
         id = try values.decode(Int.self, forKey: .id)
         name = try values.decode(String.self, forKey: .name)
-        ipAddress = try values.decode(String.self, forKey: .ipAddress)
         on = try values.decode(Bool.self, forKey: .on)
-        let locationName = try values.decode(String.self, forKey: .location)
-        location = LocationManager.shared.getLocationByName(locationName)!
+        locationString = try values.decode(String.self, forKey: .location)
+        ipAddress = try values.decode(String.self, forKey: .ipAddress)
         data = try values.decode(String.self, forKey: .data)
     }
     
@@ -38,32 +37,32 @@ class BasicDevice: Device, ObservableObject {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
-        try container.encode(location.locationName, forKey: .location)
-        try container.encode(data, forKey: .data)
-        try container.encode(ipAddress, forKey: .ipAddress)
         try container.encode(on, forKey: .on)
+        try container.encode(ipAddress, forKey: .ipAddress)
+        try container.encode(data, forKey: .data)
+        try container.encode(locationString, forKey: .location)
     }
     
-    init(id: Int, name: String, location: Location, data: String, ipAddress: String, on: Bool) {
+    init(id: Int, name: String, on: Bool) {
         self.id = id
         self.name = name
-        self.ipAddress = ipAddress
         self.on = on
-        self.data = data
-        self.location = location
+        self.locationString = ""
+        self.ipAddress = ""
+        self.data = ""
     }
     
     var id: Int
     
     @Published var name: String
     
-    internal var location: Location
-    
-    @Published var data: String = ""
-    
-    var ipAddress: String
-    
     @Published internal var on: Bool
+    
+    private var ipAddress: String
+    
+    internal var data: String
+    
+    private var locationString: String
     
     var isOn: Bool {
         on
@@ -83,14 +82,6 @@ class BasicDevice: Device, ObservableObject {
         var returnValue = max(0, value)
         returnValue = min(value, 255)
         return returnValue
-    }
-    
-    func changeLocation(newLocation: Location) {
-        self.location = newLocation
-    }
-    
-    func getLocation() -> Location {
-        location
     }
     
 }
