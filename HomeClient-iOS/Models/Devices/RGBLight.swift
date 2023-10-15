@@ -8,7 +8,7 @@ class RGBLight: LightDevice {
     @Published private var green: Int
     @Published private var blue: Int
     
-    init(id: Int, name: String, on: Bool,
+    init(id: String, name: String, on: Bool,
          brightness: Int, red: Int, green: Int, blue: Int) {
         self.red = red
         self.green = green

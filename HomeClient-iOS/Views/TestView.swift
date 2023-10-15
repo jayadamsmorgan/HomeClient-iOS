@@ -5,9 +5,9 @@ struct TestView: View {
     @StateObject private var lightDevice: LightDevice
 
         init() {
-            let location = Location(id: 1, locationName: "Bedroom")
+            let location = Location(locationName: "Bedroom")
             let lightDevice = LightDevice(
-                id: 11,
+                id: "11",
                 name: "Bedroom Light",
                 on: true,
                 brightness: 100

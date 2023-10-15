@@ -25,7 +25,8 @@ struct HomeLightView: View {
                 } else {
                     VStack {
                         ForEach(0..<homeLightViewModel.locations.count, id: \.self) { locationIndex in
-                            if homeLightViewModel.locations[locationIndex].devices.count == 0 {
+                            let location = homeLightViewModel.locations[locationIndex]
+                            if location.devices.count == 0 {
                                 Color.clear
                             } else {
                                 VStack(alignment: .leading) {
@@ -35,7 +36,7 @@ struct HomeLightView: View {
                                         isLocationSheetPresented = true
                                     } label: {
                                         HStack {
-                                            Text(homeLightViewModel.locations[locationIndex].locationName)
+                                            Text(location.locationName)
                                                 .font(.title)
                                                 .foregroundColor(Color.primary)
                                             Image(systemName: "chevron.right")
@@ -52,10 +53,24 @@ struct HomeLightView: View {
                                     .padding(.leading, 20)
                                     
                                     
-                                    LazyVGrid(columns: [.init(.adaptive(minimum: 200), spacing: -15)],  spacing: 18) {
-                                        ForEach(0..<homeLightViewModel.locations[locationIndex].devices.count, id:\.self) { deviceIndex in
-                                            if homeLightViewModel.locations[locationIndex].devices[deviceIndex] is LightDevice {
-                                                LightDeviceCardView(lightDevice: homeLightViewModel.locations[locationIndex].devices[deviceIndex] as! LightDevice)
+                                    LazyVGrid(columns: [.init(.adaptive(minimum: 200), spacing: -15)],
+                                              spacing: 18) {
+                                        ForEach(0..<location.devices.count,
+                                                id:\.self) { deviceIndex in
+                                            let device = location.devices[deviceIndex]
+                                            if deviceIndex < 3 || location.devices.count == 4 {
+                                                
+                                                if device is RGBLight {
+                                                    RGBLightCardView(
+                                                        rgbLightDevice: device as! RGBLight)
+                                                    
+                                                } else if device is LightDevice {
+                                                    LightDeviceCardView(
+                                                        lightDevice: device as! LightDevice)
+                                                }
+                                                
+                                            } else if deviceIndex == 3 {
+                                                ExtraLightDevicesCardView(devices: location.devices)
                                             }
                                         }
                                     }
@@ -111,6 +126,9 @@ struct HomeLightView: View {
                 .padding(.top, 30)
             }
         }
+        .onAppear {
+            homeLightViewModel.fetchLocations()
+        }
         .introspect(.navigationStack, on: .iOS(.v16, .v17)) { navStack in
             let navbarAppearance = UINavigationBarAppearance()
             navbarAppearance.configureWithDefaultBackground()
@@ -118,6 +136,25 @@ struct HomeLightView: View {
             navStack.navigationBar.standardAppearance = navbarAppearance
         }
     }
+}
+
+struct ExtraLightDevicesCardView: View {
+    
+    var devices: [any Device]
+    
+    var body: some View {
+        ZStack(alignment: .center) {
+            Rectangle()
+                .foregroundStyle(.ultraThinMaterial)
+                .frame(width: 170, height: 170)
+                .cornerRadius(25)
+            Image(systemName: "ellipsis")
+                .resizable()
+                .foregroundStyle(.thickMaterial)
+                .frame(maxWidth: 80, maxHeight: 20)
+        }
+    }
+    
 }
 
 struct TurnAllInLocationButton: View {
@@ -154,24 +191,39 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeLightView()
             .onAppear {
-                let bedroomLocation = Location(id: 1, locationName: "Bedroom")
-                let bedroomLight = LightDevice(id: 1,
+                let bedroomLocation = Location(locationName: "Bedroom")
+                let bedroomLight = LightDevice(id: "1",
                                                name: "Bedroom Light",
                                                on: false,
                                                brightness: 88)
-                let deskLight = LightDevice(id: 2,
+                let deskLight = LightDevice(id: "2",
                                             name: "Desk Light",
                                             on: true,
                                             brightness: 88)
-                let rgbDevice = RGBLight(id: 4,
+                let rgbDevice = RGBLight(id: "4",
                                          name: "RGB",
                                          on: true,
                                          brightness: 100,
                                          red: 100, green: 0, blue: 255)
-                bedroomLocation.devices = [bedroomLight, deskLight, rgbDevice]
+                let rgbDevice2 = RGBLight(id: "5",
+                                         name: "RGB2",
+                                         on: true,
+                                         brightness: 100,
+                                         red: 0, green: 0, blue: 255)
+                let rgbDevice3 = RGBLight(id: "6",
+                                         name: "RGB3",
+                                         on: true,
+                                         brightness: 100,
+                                         red: 0, green: 0, blue: 255)
+                let rgbDevice4 = RGBLight(id: "7",
+                                         name: "RGB4",
+                                         on: true,
+                                         brightness: 100,
+                                         red: 0, green: 0, blue: 255)
+                bedroomLocation.devices = [bedroomLight, deskLight, rgbDevice, rgbDevice2, rgbDevice3, rgbDevice4]
                 
-                let bathroomLocation = Location(id: 2, locationName: "Bathroom")
-                let bathroomLight = LightDevice(id: 3,
+                let bathroomLocation = Location(locationName: "Bathroom")
+                let bathroomLight = LightDevice(id: "3",
                                                 name: "Bathroom Light",
                                                 on: false,
                                                 brightness: 88)

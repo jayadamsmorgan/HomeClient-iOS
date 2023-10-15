@@ -4,16 +4,13 @@ class LightDevice: BasicDevice {
     
     @Published private var brightness: Int
     
-    init(id: Int, name: String, on: Bool, brightness: Int) {
+    init(id: String, name: String, on: Bool, brightness: Int) {
         self.brightness = brightness
         super.init(id: id, name: name, on: on)
         self.brightness = constraint0to100(value: brightness)
     }
     
     enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case on
         case brightness
     }
     

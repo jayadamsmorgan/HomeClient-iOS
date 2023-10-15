@@ -87,10 +87,10 @@ struct LocationView: View {
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        let location = Location(id: 1, locationName: "Bedroom")
-        let device1 = LightDevice(id: 11, name: "Bedroom Light", on: true, brightness: 100)
-        let device2 = LightDevice(id: 12, name: "Desk Light", on: false, brightness: 100)
-        let device3 = RGBLight(id: 13, name: "RGB", on: false, brightness: 100, red: 255, green: 0, blue: 255)
+        let location = Location(locationName: "Bedroom")
+        let device1 = LightDevice(id: "11", name: "Bedroom Light", on: true, brightness: 100)
+        let device2 = LightDevice(id: "12", name: "Desk Light", on: false, brightness: 100)
+        let device3 = RGBLight(id: "13", name: "RGB", on: false, brightness: 100, red: 255, green: 0, blue: 255)
         let _ = (location.devices = [device1, device2, device3])
         let _ = (HomeLightViewModel.shared.locations = [location])
         LocationView(0)

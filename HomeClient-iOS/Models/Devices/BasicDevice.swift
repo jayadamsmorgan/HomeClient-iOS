@@ -3,7 +3,7 @@ import Foundation
 class BasicDevice: Device, ObservableObject {
     
     private var identifier: String {
-            return UUID().uuidString
+            return id
     }
     
     public func hash(into hasher: inout Hasher) {
@@ -25,7 +25,7 @@ class BasicDevice: Device, ObservableObject {
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: DeviceWrapper.CodingKeys.self).nestedContainer(keyedBy: BasicDevice.CodingKeys.self, forKey: .device)
-        id = try values.decode(Int.self, forKey: .id)
+        id = try values.decode(String.self, forKey: .id)
         name = try values.decode(String.self, forKey: .name)
         on = try values.decode(Bool.self, forKey: .on)
         locationString = try values.decode(String.self, forKey: .location)
@@ -43,7 +43,7 @@ class BasicDevice: Device, ObservableObject {
         try container.encode(locationString, forKey: .location)
     }
     
-    init(id: Int, name: String, on: Bool) {
+    init(id: String, name: String, on: Bool) {
         self.id = id
         self.name = name
         self.on = on
@@ -52,7 +52,7 @@ class BasicDevice: Device, ObservableObject {
         self.data = ""
     }
     
-    var id: Int
+    var id: String
     
     @Published var name: String
     

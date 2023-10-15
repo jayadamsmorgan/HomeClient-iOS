@@ -91,9 +91,9 @@ struct LightDeviceCardView: View {
 
 struct LightDeviceCardView_Previews: PreviewProvider {
     
-    private static let location = Location(id: 1, locationName: "Bedroom")
+    private static let location = Location(locationName: "Bedroom")
     @StateObject private static var lightDevice: RGBLight = RGBLight(
-        id: 11,
+        id: "11",
         name: "Bedroom Light",
         on: true,
         brightness: 100,

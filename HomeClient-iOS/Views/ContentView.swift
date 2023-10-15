@@ -35,28 +35,6 @@ struct ContentView: View {
                         Image(systemName: "house")
                         Text("Home")
                     }
-                    .onAppear {
-                        let bedroomLocation = Location(id: 1, locationName: "Bedroom")
-                        let bedroomLight = LightDevice(id: 1,
-                                                       name: "Bedroom Light",
-                                                       on: false,
-                                                       brightness: 100)
-                        let deskLight = LightDevice(id: 2,
-                                                    name: "Desk Light",
-                                                    on: true,
-                                                    brightness: 60)
-                        bedroomLocation.devices.append(bedroomLight)
-                        bedroomLocation.devices.append(deskLight)
-                        
-                        let bathroomLocation = Location(id: 2, locationName: "Bathroom")
-                        let bathroomLight = LightDevice(id: 3,
-                                                        name: "Bathroom Light",
-                                                        on: false,
-                                                        brightness: 100)
-                        bathroomLocation.devices.append(bathroomLight)
-                        
-                        HomeLightViewModel.shared.locations = [bedroomLocation, bathroomLocation]
-                    }
                 HomeSensorsView()
                     .tabItem {
                         Image(systemName: "sensor")
@@ -87,5 +65,27 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .onAppear {
+                let bedroomLocation = Location(locationName: "Bedroom")
+                let bedroomLight = LightDevice(id: "1",
+                                               name: "Bedroom Light",
+                                               on: false,
+                                               brightness: 100)
+                let deskLight = LightDevice(id: "2",
+                                            name: "Desk Light",
+                                            on: true,
+                                            brightness: 60)
+                bedroomLocation.devices.append(bedroomLight)
+                bedroomLocation.devices.append(deskLight)
+                
+                let bathroomLocation = Location(locationName: "Bathroom")
+                let bathroomLight = LightDevice(id: "3",
+                                                name: "Bathroom Light",
+                                                on: false,
+                                                brightness: 100)
+                bathroomLocation.devices.append(bathroomLight)
+                
+                HomeLightViewModel.shared.locations = [bedroomLocation, bathroomLocation]
+            }
     }
 }
