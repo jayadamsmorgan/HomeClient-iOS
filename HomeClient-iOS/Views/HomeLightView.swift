@@ -25,8 +25,7 @@ struct HomeLightView: View {
                 } else {
                     VStack {
                         ForEach(0..<homeLightViewModel.locations.count, id: \.self) { locationIndex in
-                            let location = homeLightViewModel.locations[locationIndex]
-                            if location.devices.count == 0 {
+                            if homeLightViewModel.locations[locationIndex].devices.count == 0 {
                                 Color.clear
                             } else {
                                 VStack(alignment: .leading) {
@@ -36,7 +35,7 @@ struct HomeLightView: View {
                                         isLocationSheetPresented = true
                                     } label: {
                                         HStack {
-                                            Text(location.locationName)
+                                            Text(homeLightViewModel.locations[locationIndex].locationName)
                                                 .font(.title)
                                                 .foregroundColor(Color.primary)
                                             Image(systemName: "chevron.right")
@@ -55,22 +54,21 @@ struct HomeLightView: View {
                                     
                                     LazyVGrid(columns: [.init(.adaptive(minimum: 200), spacing: -15)],
                                               spacing: 18) {
-                                        ForEach(0..<location.devices.count,
+                                        ForEach(0..<homeLightViewModel.locations[locationIndex].devices.count,
                                                 id:\.self) { deviceIndex in
-                                            let device = location.devices[deviceIndex]
-                                            if deviceIndex < 3 || location.devices.count == 4 {
+                                            if deviceIndex < 3 || homeLightViewModel.locations[locationIndex].devices.count == 4 {
                                                 
-                                                if device is RGBLight {
+                                                if homeLightViewModel.locations[locationIndex].devices[deviceIndex] is RGBLight {
                                                     RGBLightCardView(
-                                                        rgbLightDevice: device as! RGBLight)
+                                                        rgbLightDevice: homeLightViewModel.locations[locationIndex].devices[deviceIndex] as! RGBLight)
                                                     
-                                                } else if device is LightDevice {
+                                                } else if homeLightViewModel.locations[locationIndex].devices[deviceIndex] is LightDevice {
                                                     LightDeviceCardView(
-                                                        lightDevice: device as! LightDevice)
+                                                        lightDevice: homeLightViewModel.locations[locationIndex].devices[deviceIndex] as! LightDevice)
                                                 }
                                                 
                                             } else if deviceIndex == 3 {
-                                                ExtraLightDevicesCardView(devices: location.devices)
+                                                ExtraLightDevicesCardView(devices: homeLightViewModel.locations[locationIndex].devices)
                                             }
                                         }
                                     }
@@ -90,6 +88,7 @@ struct HomeLightView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
+                        AuthService.shared.clearAuthResponse()
                         // TODO: Go to DeviceAddingView
                     } label: {
                         Image(systemName: "plus")
@@ -159,15 +158,16 @@ struct ExtraLightDevicesCardView: View {
 
 struct TurnAllInLocationButton: View {
     
+    @StateObject var homeLightViewModel = HomeLightViewModel.shared
     let locationIndex: Int
     let on: Bool
     
     var body: some View {
         Button {
-            for index in 0..<HomeLightViewModel.shared.locations[locationIndex].devices.count {
-                if HomeLightViewModel.shared.locations[locationIndex].devices[index] is LightDevice {
+            for index in 0..<homeLightViewModel.locations[locationIndex].devices.count {
+                if homeLightViewModel.locations[locationIndex].devices[index] is LightDevice {
                     withAnimation {
-                        HomeLightViewModel.shared.locations[locationIndex].devices[index].on = on
+                        homeLightViewModel.locations[locationIndex].devices[index].on = on
                     }
                 }
             }

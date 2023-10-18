@@ -18,9 +18,12 @@ struct ContentView: View {
         case .ABOUT_TO_EXPIRE:
             print("Token is about to expire")
             // TODO token renewal
+            AuthService.shared.loadAuthResponse()
             loginViewModel.needsLogin = false
         case .NON_EXPIRED:
             print("Token is not expired")
+            AuthService.shared.loadAuthResponse()
+//            DeviceService.shared.startLocationRequests()
             loginViewModel.needsLogin = false
         }
     }

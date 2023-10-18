@@ -4,7 +4,7 @@ import SwiftUI
 
 class HomeLightViewModel: ObservableObject {
     
-    @Published public var locations: [Location] = []
+    @Published public var locations = [Location]()
 
     public static let shared = HomeLightViewModel()
     
@@ -20,15 +20,25 @@ class HomeLightViewModel: ObservableObject {
         DeviceService.shared.getLocations(handleFinish: { locations, error in
             if let error = error {
                 print(error)
-            } else {
-                print("OK")
-                self.locations = locations
+                return
             }
+            self.objectWillChange.send()
+            self.locations = locations
+//            if self.locations.isEmpty {
+//                return
+//            }
+            
         })
     }
     
-    func sendDeviceState() {
-        
+    func sendDeviceState(device: any Device) {
+        DeviceService.shared.updateDevice(device: device) { error in
+            if error == nil {
+                print("OK")
+            } else {
+                print("error \(error!)")
+            }
+        }
     }
     
 }

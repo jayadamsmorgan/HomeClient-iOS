@@ -23,8 +23,8 @@ class TokenService {
     func saveToken(_ token: String) -> Bool {
         print("Saving token")
         sb.remove(key: tokenKeychainKey)
-        sb.archive("Bearer \(token)", key: tokenKeychainKey)
-        self.token = "Bearer " + token
+        sb.archive(token, key: tokenKeychainKey)
+        self.token = token
         return true
     }
     

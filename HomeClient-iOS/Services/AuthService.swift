@@ -10,10 +10,19 @@ class AuthService {
     private let networkManager = NetworkManager.shared
     
     var homeName: String?
-    var userID: Int?
+    var userID: String?
     
     fileprivate init() {
         
+    }
+    
+    func loadAuthResponse() {
+        let strongbox = Strongbox()
+        self.tokenService.token = strongbox.unarchive(objectForKey: "HomeClientToken") as? String ?? ""
+        self.homeName = strongbox.unarchive(objectForKey: "HomeClientHomeName") as? String ?? ""
+        self.userID = strongbox.unarchive(objectForKey: "HomeClientUserID") as? String ?? ""
+        networkManager.baseURL = strongbox.unarchive(objectForKey: "HomeClientBaseURL") as? String ?? ""
+        networkManager.start(baseURL: networkManager.baseURL)
     }
     
     func saveAuthResponse(_ baseURL: String, _ authResponse: AuthResponse) {
@@ -26,6 +35,14 @@ class AuthService {
         } else {
             print("Cannot save auth response: 'token' is nil")
         }
+    }
+    
+    func clearAuthResponse() {
+        let strongbox = Strongbox()
+        strongbox.remove(key: "HomeClientBaseURL")
+        strongbox.remove(key: "HomeClientToken")
+        strongbox.remove(key: "HomeClientHomeName")
+        strongbox.remove(key: "HomeClientUserID")
     }
     
     func registerHome(homeName: String,
@@ -75,6 +92,14 @@ class AuthService {
                         print("AUTH OK")
                         self.saveAuthResponse(self.networkManager.baseURL, authResponse)
                     }
+                    if authResponse.error == nil
+                            && authResponse.homeName != nil
+                            && authResponse.userID != nil
+                            && authResponse.token != nil {
+                        self.homeName = authResponse.homeName
+                        self.userID = authResponse.userID
+                        self.tokenService.token = authResponse.token!
+                    }
                     handleFinish(nil, authResponse)
                 } catch {
                     handleFinish(error, nil)
@@ -106,7 +131,7 @@ private struct HomeRegistrationRequest: Encodable {
 }
 
 struct AuthResponse : Decodable {
-    let userID: Int?
+    let userID: String?
     let token: String?
     let homeName: String?
     let error: String?

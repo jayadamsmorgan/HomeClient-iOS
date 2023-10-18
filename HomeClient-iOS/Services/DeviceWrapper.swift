@@ -1,7 +1,7 @@
 import Foundation
 
 struct DeviceWrapper: Codable {
-    var device: BasicDevice
+    var device: any Device
     var deviceType: String
         
     enum CodingKeys: String, CodingKey {
@@ -9,8 +9,8 @@ struct DeviceWrapper: Codable {
         case device
     }
     
-    init(deviceType: String, device: BasicDevice) {
-        self.deviceType = deviceType
+    init(device: any Device) {
+        self.deviceType = String(describing: type(of: device))
         self.device = device
     }
     
@@ -23,5 +23,11 @@ struct DeviceWrapper: Codable {
         }
         
         self.device = device
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: DeviceWrapper.CodingKeys.self)
+        try container.encode(device, forKey: .device)
+        try container.encode(deviceType, forKey: .deviceType)
     }
 }

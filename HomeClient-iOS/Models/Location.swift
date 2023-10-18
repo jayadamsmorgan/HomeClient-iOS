@@ -4,7 +4,9 @@ import SwiftUI
 class Location: Hashable, ObservableObject, Identifiable, Codable {
     
     func encode(to encoder: Encoder) throws {
-        
+        var container = encoder.container(keyedBy: Location.CodingKeys.self)
+        try container.encode(locationName, forKey: .locationName)
+        try container.encode(devices as? [BasicDevice], forKey: .devices)
     }
     
     enum CodingKeys: String, CodingKey {

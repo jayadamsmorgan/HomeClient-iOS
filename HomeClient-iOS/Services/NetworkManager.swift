@@ -9,6 +9,10 @@ class NetworkManager {
     
     public static let shared = NetworkManager()
     
+    fileprivate init() {
+        
+    }
+    
     var baseURL: String = ""
     
     func start(baseURL: String) {
@@ -19,8 +23,8 @@ class NetworkManager {
     
     func setAuthToken() {
         service?.configure("**") {
-//            $0.headers["Authorization"] = self.tokenService.getToken()
-            $0.headers["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0VXNlckFkbWluIiwiaWF0IjoxNjk2NDU1MDYwLCJleHAiOjE2OTkwNDcwNjB9.BgPjxrbHNELJGQP4vfUuyJNq262mdjvGitj9ejuwcpk"
+            $0.headers["Authorization"] = "Bearer " + self.tokenService.getToken()
+            print("Token: " + self.tokenService.getToken())
         }
     }
     

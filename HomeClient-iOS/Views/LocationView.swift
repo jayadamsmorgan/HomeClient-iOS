@@ -44,10 +44,10 @@ struct LocationView: View {
                         HStack {
                             ForEach(0..<homeLightViewModel
                                 .locations[locationIndex].devices.count, id: \.self) { deviceIndex in
-                                    if type(of: homeLightViewModel.locations[locationIndex].devices[deviceIndex]) == RGBLight.self {
-                                        LightDeviceCardView(lightDevice: homeLightViewModel.locations[locationIndex].devices[deviceIndex] as! LightDevice)
-                                            .padding(.trailing, 10)
-                                    }
+                                if type(of: homeLightViewModel.locations[locationIndex].devices[deviceIndex]) == RGBLight.self {
+                                    RGBLightCardView(rgbLightDevice: homeLightViewModel.locations[locationIndex].devices[deviceIndex] as! RGBLight)
+                                        .padding(.trailing, 10)
+                                }
                             }
                         }
                         .padding(.leading, 20)

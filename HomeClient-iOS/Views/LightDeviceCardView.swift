@@ -54,33 +54,9 @@ struct LightDeviceCardView: View {
     var menuItems: some View {
         Group {
             if lightDevice.isOn {
-                Button("Turn off", action: {
-                    withAnimation {
-                        lightDevice.toggle()
-                    }
-                    let request = NetworkManager.shared.post(resource: "/devices/\(lightDevice.id)", object: DeviceWrapper(deviceType: "RGBLightDevice", device: lightDevice))
-                    request?
-                        .onSuccess { callback in
-                            print("OK")
-                        }
-                        .onFailure { callback in
-                            print(callback)
-                        }
-                })
+                Button("Turn off", action: { } )
             } else {
-                Button("Turn on",  action: {
-                    withAnimation {
-                        lightDevice.toggle()
-                    }
-                    let request = NetworkManager.shared.post(resource: "/devices/\(lightDevice.id)", object: DeviceWrapper(deviceType: "RGBLightDevice", device: lightDevice))
-                    request?
-                        .onSuccess { callback in
-                            print("OK")
-                        }
-                        .onFailure { callback in
-                            print(callback)
-                        }
-                })
+                Button("Turn on",  action: { } )
             }
             Button("Set full brightness", action: { withAnimation { lightDevice.setBrightness(100) } })
             Button("Set brightness 60%", action: { withAnimation { lightDevice.setBrightness(60) } })

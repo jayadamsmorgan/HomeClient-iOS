@@ -31,6 +31,14 @@ class RGBLight: LightDevice {
         try super.init(from: decoder)
     }
     
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(red, forKey: .red)
+        try container.encode(green, forKey: .green)
+        try container.encode(blue, forKey: .blue)
+        try super.encode(to: encoder)
+    }
+    
     var getRed: Int {
         red
     }

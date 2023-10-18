@@ -24,13 +24,14 @@ class BasicDevice: Device, ObservableObject {
     }
     
     required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: DeviceWrapper.CodingKeys.self).nestedContainer(keyedBy: BasicDevice.CodingKeys.self, forKey: .device)
+        let values = try decoder.container(keyedBy: DeviceWrapper.CodingKeys.self)
+            .nestedContainer(keyedBy: BasicDevice.CodingKeys.self, forKey: .device)
         id = try values.decode(String.self, forKey: .id)
         name = try values.decode(String.self, forKey: .name)
         on = try values.decode(Bool.self, forKey: .on)
         locationString = try values.decode(String.self, forKey: .location)
         ipAddress = try values.decode(String.self, forKey: .ipAddress)
-        data = try values.decode(String.self, forKey: .data)
+        data = try values.decode(String?.self, forKey: .data)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -49,7 +50,6 @@ class BasicDevice: Device, ObservableObject {
         self.on = on
         self.locationString = ""
         self.ipAddress = ""
-        self.data = ""
     }
     
     var id: String
@@ -60,7 +60,7 @@ class BasicDevice: Device, ObservableObject {
     
     private var ipAddress: String
     
-    internal var data: String
+    internal var data: String?
     
     private var locationString: String
     

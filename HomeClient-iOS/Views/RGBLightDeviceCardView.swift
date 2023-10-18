@@ -9,7 +9,7 @@ struct RGBLightCardView: View {
     @State var lastSelectionColor: Color = .clear
     
     private var backgroundColor: Color {
-        if rgbLightDevice.isOn {
+        if rgbLightDevice.on {
             // Color accepts sRGB range [0.0-1.0] (Double)
             return Color(.sRGB,
                          red: Double(rgbLightDevice.getRed) / 255.0,
@@ -49,7 +49,7 @@ struct RGBLightCardView: View {
                         .frame(minWidth: 95, maxWidth: 130)
                         .padding(.leading, 15)
                         .padding(.top, 15)
-                    if rgbLightDevice.getBrightness < 100 && rgbLightDevice.isOn {
+                    if rgbLightDevice.getBrightness < 100 && rgbLightDevice.on {
                         Text("\(rgbLightDevice.getBrightness)%")
                             .foregroundColor(.primary)
                             .font(.system(size: 22).bold())
@@ -61,6 +61,7 @@ struct RGBLightCardView: View {
                 withAnimation {
                     rgbLightDevice.toggle()
                 }
+                HomeLightViewModel.shared.sendDeviceState(device: rgbLightDevice)
             }
             if (rgbLightDevice.isOn) {
                 ColorPicker(selection: $selectionColor) { }
@@ -74,6 +75,7 @@ struct RGBLightCardView: View {
                             }
                         }
                         lastSelectionColor = newValue
+                        HomeLightViewModel.shared.sendDeviceState(device: rgbLightDevice)
                     }
                 })
                 .frame(width: 0)
@@ -84,24 +86,41 @@ struct RGBLightCardView: View {
         }
     }
     
-    var brightnessMenuItems: some View {
-        Group {
-            ForEach(0...10, id: \.self) { brightnessSelect in
-                Button("\(brightnessSelect * 10)%", action: { rgbLightDevice.setBrightness(brightnessSelect * 10) })
-            }
-        }
-    }
-    
     var menuItems: some View {
         Group {
             if rgbLightDevice.isOn {
-                Button("Turn off", action: { withAnimation { rgbLightDevice.toggle() } })
+                Button("Turn off", action: {
+                    withAnimation {
+                        rgbLightDevice.toggle()
+                    }
+                    HomeLightViewModel.shared.sendDeviceState(device: rgbLightDevice)
+                })
             } else {
-                Button("Turn on", action: { withAnimation { rgbLightDevice.toggle() } })
+                Button("Turn on", action: {
+                    withAnimation {
+                        rgbLightDevice.toggle()
+                    }
+                    HomeLightViewModel.shared.sendDeviceState(device: rgbLightDevice)
+                })
             }
-            Button("Set full brightness", action: { withAnimation { rgbLightDevice.setBrightness(100) } })
-            Button("Set brightness 60%", action: { withAnimation { rgbLightDevice.setBrightness(60) } })
-            Button("Set brightness 30%", action: { withAnimation { rgbLightDevice.setBrightness(30) } })
+            Button("Set full brightness", action: {
+                withAnimation {
+                    rgbLightDevice.setBrightness(100)
+                }
+                HomeLightViewModel.shared.sendDeviceState(device: rgbLightDevice)
+            })
+            Button("Set brightness 60%", action: {
+                withAnimation {
+                    rgbLightDevice.setBrightness(60)
+                }
+                HomeLightViewModel.shared.sendDeviceState(device: rgbLightDevice)
+            })
+            Button("Set brightness 30%", action: {
+                withAnimation {
+                    rgbLightDevice.setBrightness(30)
+                }
+                HomeLightViewModel.shared.sendDeviceState(device: rgbLightDevice)
+            })
         }
     }
 }

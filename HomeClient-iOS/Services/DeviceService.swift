@@ -14,7 +14,7 @@ class DeviceService {
     var timer: Timer?
     
     func startLocationRequests() {
-        self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { [weak self] _ in
             self?.getLocations { locations, error in
                 if let error = error {
                     print("Error: \(error)")
@@ -78,6 +78,18 @@ class DeviceService {
             }
             .onFailure { callback in
                 handleFinish([], callback)
+            }
+    }
+    
+    func updateDevice(device: any Device, handleFinish: @escaping ( _ error: Error? ) -> Void ) {
+        let request = networkManager.post(resource: "/devices",
+                                          object: DeviceWrapper(device: device))
+        request?
+            .onSuccess { callback in
+                handleFinish(nil)
+            }
+            .onFailure { callback in
+                handleFinish(callback)
             }
     }
     
